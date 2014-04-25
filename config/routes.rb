@@ -1,7 +1,7 @@
 LearnR::Application.routes.draw do
 
   devise_for :users
-  resources :user
-  root to: "user#index"
+  resources :users
+  root to: "users#index"
 
 end
