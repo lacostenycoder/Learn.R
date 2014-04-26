@@ -1,10 +1,37 @@
 $(document).ready(function(){
 
+var keyLookup = {
+  65: "c2",
+  87: "c-2",
+  83: "d2",
+  69: "d-2",
+  68: "e2",
+  70: "f2",
+  84: "f-2",
+  71: "g2",
+  89: "g-2",
+  72: "a3",
+  85: "a-3",
+  74: "b3",
+  75: "c3",
+  79: "c-3",
+  76: "d3",
+  80: "d-3",
+ 186: "e3",
+ 222: "f3"
+}
+
 var keyCheck;
 
   $('.key').click(function(){
     var playKeyId = $(this).attr('id');
     playKey(playKeyId);
+  });
+
+  $( "body" ).on( "keydown", function( event ) {
+    keyCheck = event.which;
+    console.log(keyCheck);
+    playKey(keyLookup[keyCheck]);
   });
 
   function playKey(keyId){
@@ -14,22 +41,6 @@ var keyCheck;
     //var audioId = 'p'+keyId;
     audioTag.appendTo('.player');
     $('audio').eq(0).trigger('play');
-
   }
-
 });
-
-
-// var sounds = {
-//    88 : 'alarm'; // key 'x'
-
-// };
-//   onkeydown function(e) {
-//     var soundId = sounds[e.keyCode];
-//     if (soundId) document.getElementById(soundId).play();
-//     else console.log("key not mapped : code is", e.keyCode);
-// }
-
-// })
-
 
