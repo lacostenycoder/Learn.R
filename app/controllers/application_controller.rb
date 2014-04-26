@@ -4,7 +4,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-
+  def after_sign_in_path_for(resource)
+    user_path(current_user)
+  end
 
   protected
 
@@ -12,8 +14,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) << :username << :name
 
     devise_parameter_sanitizer.for(:account_update) do |u|
-      u.permit(:name, :username, :avatar,
-        :email, :password, :password_confirmation, :current_password)
+      u.permit(:name, :username, :avatar, :email, :password, :password_confirmation, :current_password)
     end
 
   end

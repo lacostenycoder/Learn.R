@@ -3,6 +3,15 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'shoulda/matchers'
+require 'capybara/rails'
+require 'capybara/rspec'
+
+def sign_in(email, password)
+  visit("/users/sign_in")
+  fill_in("Email", with: email)
+  fill_in("Password", with: password)
+  click_button("Sign in")
+end
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -18,6 +27,7 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
 RSpec.configure do |config|
+  config.deprecation_stream = 'log/deprecations.log'
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
