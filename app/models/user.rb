@@ -5,4 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # attr_accessible :username, :name, :email, :password, :password_confirmation, :remember_me
+
+  # Custom Validations
+  validates(:name, :username, presence: true)
+  validates(:username, uniqueness: true)
 end
