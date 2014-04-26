@@ -31,7 +31,12 @@ var keyCheck;
   $( "body" ).on( "keydown", function( event ) {
     keyCheck = event.which;
     console.log(keyCheck);
+    $("#"+keyLookup[keyCheck] ).toggleClass("keyhover");
     playKey(keyLookup[keyCheck]);
+  });
+
+  $( "body" ).on( "keyup", function() {
+    $('.key').removeClass('keyhover');
   });
 
   function playKey(keyId){
