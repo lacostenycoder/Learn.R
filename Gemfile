@@ -35,6 +35,7 @@ end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# Use devise for user creation/authentication
 gem 'devise'
 
 # Use unicorn as the app server
@@ -45,3 +46,8 @@ gem 'devise'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'pry-rails'
+end
