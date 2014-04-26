@@ -1,0 +1,18 @@
+<audio id=alarm>
+    <source src=sound/zbluejay.wav>
+</audio>
+And execute it with
+
+document.getElementById('alarm').play();
+You could for example build a map linking keycodes to sound element ids :
+
+var sounds = {
+   88 : 'alarm', // key 'x'
+   ...
+
+};
+document.onkeydown = function(e) {
+    var soundId = sounds[e.keyCode];
+    if (soundId) document.getElementById(soundId).play();
+    else console.log("key not mapped : code is", e.keyCode);
+}
