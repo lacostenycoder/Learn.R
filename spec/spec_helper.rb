@@ -7,7 +7,8 @@ require 'capybara/rails'
 require 'capybara/rspec'
 
 def sign_in(email, password)
-  visit("/users/sign_in")
+  visit("/")
+  click_link("Sign in")
   fill_in("Email", with: email)
   fill_in("Password", with: password)
   click_button("Sign in")

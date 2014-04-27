@@ -3,7 +3,8 @@ require 'spec_helper'
 feature 'A user can sign up and change information' do
 
   background do
-    visit("/users/sign_up")
+    visit("/")
+    click_link("Sign up")
     fill_in("Email", with: 'john@doe.com')
     fill_in("Name", with: 'John Doe')
     fill_in("Username", with: 'jdoe')
