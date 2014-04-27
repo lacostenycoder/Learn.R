@@ -11,10 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140425212908) do
+ActiveRecord::Schema.define(version: 20140427215327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "code_lessons", force: true do |t|
+    t.integer "points"
+    t.integer "level"
+    t.string  "img"
+    t.text    "lesson_text"
+    t.text    "question_text"
+    t.integer "start_row"
+    t.integer "start_col"
+    t.integer "solution_row"
+    t.integer "solution_col"
+  end
+
+  create_table "code_lessons_users", id: false, force: true do |t|
+    t.integer "code_lesson_id", null: false
+    t.integer "user_id",        null: false
+  end
+
+  add_index "code_lessons_users", ["code_lesson_id", "user_id"], name: "index_code_lessons_users_on_code_lesson_id_and_user_id", using: :btree
+  add_index "code_lessons_users", ["user_id", "code_lesson_id"], name: "index_code_lessons_users_on_user_id_and_code_lesson_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
