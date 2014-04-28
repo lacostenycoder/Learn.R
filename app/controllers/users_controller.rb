@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     else
       @next_code_lesson = CodeLesson.find_by(global_level: @completed_code_lessons.pluck(:global_level).max + 1)
     end
+    @music_lessons = MusicLesson.all.group_by(&:category)
   end
 
 
