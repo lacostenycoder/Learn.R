@@ -43,6 +43,12 @@ var keyCheck;
     $('.key').removeClass('keyhover');
   });
 
+  function playLesson(keyCheck){
+      $("#"+keyLookup[keyCheck] ).toggleClass("keyhover");
+      playKey(keyLookup[keyCheck]);
+      $('.key').removeClass('keyhover');
+  }
+
   function playKey(keyId){
     $('.player').empty();
     var fileName = keyId+'.mp3';
@@ -53,7 +59,8 @@ var keyCheck;
 
   function startLesson(){
     keyCheck=65;
-    playKey(keyLookup[keyCheck]);
+    //playKey(keyLookup[keyCheck]);
+    playLesson(keyCheck);
   }
 
 });
