@@ -38,8 +38,8 @@ feature "A Music Lessons Page shows Lessons" do
 
   scenario "Clicking on a music lesson link should take you to the appropriate lesson" do
     lesson = MusicLesson.find_by(title: 'C Major Scale')
-    click_link("Lesson #{lesson.level}: #{lesson1.title}")
-    expect(page).to have_content("Lesson 1")
+    click_link("Lesson #{lesson.level}: #{lesson.title}")
+    expect(page).to have_content(lesson.title)
   end
 
 end

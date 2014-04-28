@@ -22,9 +22,18 @@ feature 'Page should display list of Lessons started or completed' do
                             start_col: 1,
                             solution_row: 1,
                             solution_col: 5)
-
+    @lesson2 = MusicLesson.create(
+                            title: "Music Lesson 1",
+                            category: "Music",
+                            lesson_text: "This is a test okay",
+                            question_text: "Will this test work?",
+                            img: "http://placesheen.com/200/300 ",
+                            level: 1,
+                            global_level: 1,
+                            points: 20,
+                            solution_key_pattern: "test blah")
     sign_in("somekid@fakemail.com", "butts1234")
-    new_user.update(score: 40) # completed some lessons
+
   end
 
   scenario "should take us to code lesson 1 when clicked" do
@@ -33,7 +42,7 @@ feature 'Page should display list of Lessons started or completed' do
   end
 
   scenario "should take us to music lesson 1 when clicked" do
-    click_link("Music Lesson 1")
+    click_link("Lesson #{@lesson2.level}: #{@lesson2.title}")
     expect(page).to have_content("Welcome to Music Lesson 1")
   end
 
@@ -43,9 +52,7 @@ feature 'Page should display list of Lessons started or completed' do
   end
 
   scenario "user should see they're current score on their page" do
-    expect(page).to have_content("Score: 40")
-    new_user.update(score: 60)
-    expect(page).to have_content("Score: 60")
+    expect(page).to have_content("Total Score: 0")
   end
 
 end
