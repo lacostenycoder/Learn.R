@@ -6,9 +6,9 @@ feature 'Page should display list of Lessons started or completed' do
     new_user = User.create({email: "somekid@fakemail.com",
                             name: "Matt farts",
                             username: "somekid",
-                            password: "butts",
-                            password_confirmation: "butts"})
-    sign_in("somekid@fakemail.com", "butts")
+                            password: "milkbone123",
+                            password_confirmation: "milkbone123"})
+    sign_in("somekid@fakemail.com", "milkbone123")
     new_user.update(score: 40) # completed some lessons
   end
 

@@ -5,7 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-MusicLesson .create(
+MusicLesson.create(
                       lesson_text: "This is a test okay",
                       question_text: "Will this test work?",
                       img: "http://placesheen.com/200/300 ",

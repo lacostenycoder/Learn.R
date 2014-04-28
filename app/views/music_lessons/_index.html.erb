@@ -1,0 +1,12 @@
+<% music_lessons.each do |cat, lessons| %>
+<h2> <%= cat %> </h2>
+ <ul>
+  <% lessons.each do |lesson| %>
+    <li>
+      Level <%= lesson.level %>: <%= lesson.title %>
+    </li>
+  <% end %>
+  </ul>
+<% end %>
+
+
