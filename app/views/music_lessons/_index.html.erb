@@ -1,12 +1,18 @@
 <% music_lessons.each do |cat, lessons| %>
 <h2> <%= cat %> </h2>
- <ul>
+<ul>
   <% lessons.each do |lesson| %>
-    <li>
-      Level <%= lesson.level %>: <%= lesson.title %>
-    </li>
-  <% end %>
-  </ul>
+   <% if lesson == next_music_lesson %>
+    <li><%= link_to "Lesson #{lesson.level}: #{lesson.title}", next_music_lesson %></li>
+  <% else %>
+   <% if completed_music_lessons.include?(lesson) %>
+   <li class="completed"> <%= link_to "Lesson #{lesson.level} : #{lesson.title}", lesson %></li>
+  <% else %>
+   <li class="incomplete">Lesson <%= lesson.level %>: <%= lesson.title %></li>
+ <% end %>
+ <% end %>
+<% end %>
+</ul>
 <% end %>
 
 

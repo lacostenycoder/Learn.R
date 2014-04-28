@@ -9,7 +9,7 @@ MusicLesson.destroy_all
 CodeLesson.destroy_all
 User.destroy_all
 
-MusicLesson.create(
+musiclesson1 = MusicLesson.create(
                       lesson_text: "This is a test okay",
                       question_text: "Will this test work?",
                       img: "http://placesheen.com/200/300 ",
@@ -17,7 +17,32 @@ MusicLesson.create(
                       points: 20,
                       solution_key_pattern: "65, 65, 88",
                       category: "Scales",
-                      title: "Major Scale"
+                      title: "Major Scale",
+                      global_level: 1
+                      )
+
+musiclesson2 = MusicLesson.create(
+                      lesson_text: "You will learn Rhythm fool",
+                      question_text: "How will you master rhythm?",
+                      img: "http://placesheen.com/400/400 ",
+                      level: 1,
+                      points: 40,
+                      solution_key_pattern: "77, 99, 22",
+                      category: "Rhythm",
+                      title: "Poop",
+                      global_level: 3
+                      )
+
+musiclesson3 = MusicLesson.create(
+                      lesson_text: "Blah blah",
+                      question_text: "Will this test work? again?",
+                      img: "http://placesheen.com/200/300 ",
+                      level: 2,
+                      points: 50,
+                      solution_key_pattern: "22, 33, 44",
+                      category: "Scales",
+                      title: "Minor Scale",
+                      global_level: 2
                       )
 
 codelesson1 = CodeLesson.create(
@@ -69,5 +94,6 @@ user1 = User.create({email: "a@ga.co",
                       password_confirmation: "abc12345"})
 
 user1.code_lessons << codelesson1
+user1.music_lessons << musiclesson1
 
 
