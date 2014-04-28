@@ -21,5 +21,6 @@ describe CodeLesson do
   it { should validate_presence_of :start_col}
   it { should validate_presence_of :solution_row}
   it { should validate_presence_of :solution_col}
+
 end
 
