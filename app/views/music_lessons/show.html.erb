@@ -1,26 +1,26 @@
-<div>
-<h1><%= @lesson.title %></h1>
-<p class="points"><%= @lesson.points %></p>
+<div class="container">
+    <h1><%= @lesson.title %></h1>
+    <p>Lesson Topics: <%= @lesson.lesson_text %></p>
+    <p class="points">Available Points: <%= @lesson.points %></p>
 
-<div class="canvas">Place Canvas Here</div>
+    <div class="canvas">Place Canvas Here</div>
 
-<div class="text">
+    <div class="text">
 
-  <p><%= @lesson.lesson_text %></p>
-  <p><%= @lesson.question_text %></p>
 
-  <div>
-      <% form_tag( @lesson, remote: true) do |f| %>
+      <p>Instructions: <%= @lesson.question_text %></p>
 
-      <%= label_tag(:answer, "Enter your answer") %>
-      <%= text_field_tag :answer %>
+      <div>
+          <%= form_tag( @lesson, remote: true) do |f| %>
 
-      <%= submit_tag( "Submit Answer") %>
+          <%= label_tag(:answer, "Enter your answer") %>
+          <%= text_area_tag :answer %>
 
-    <% end %>
-  </div>
+          <%= submit_tag( "Submit Answer") %>
 
-</div>
+        <% end %>
+      </div>
 
+    </div>
 
 </div>
