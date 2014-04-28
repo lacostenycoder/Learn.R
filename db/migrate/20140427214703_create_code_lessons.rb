@@ -12,6 +12,7 @@ class CreateCodeLessons < ActiveRecord::Migration
       t.integer :solution_col
       t.string :category
       t.string :title
+      t.integer :global_level
     end
   end
 end

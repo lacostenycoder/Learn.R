@@ -9,6 +9,7 @@ class CreateMusicLessons < ActiveRecord::Migration
       t.text :solution_key_pattern
       t.string :category
       t.string :title
+      t.integer :global_level
     end
   end
 end

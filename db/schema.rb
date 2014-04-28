@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20140427221948) do
     t.integer "solution_col"
     t.string  "category"
     t.string  "title"
+    t.integer "global_level"
   end
 
   create_table "code_lessons_users", id: false, force: true do |t|
@@ -47,6 +48,7 @@ ActiveRecord::Schema.define(version: 20140427221948) do
     t.text    "solution_key_pattern"
     t.string  "category"
     t.string  "title"
+    t.integer "global_level"
   end
 
   create_table "music_lessons_users", id: false, force: true do |t|
@@ -74,7 +76,6 @@ ActiveRecord::Schema.define(version: 20140427221948) do
     t.string   "avatar"
     t.string   "username"
     t.integer  "score"
-    t.integer  "global_level"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
