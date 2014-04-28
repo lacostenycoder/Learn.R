@@ -1,0 +1,15 @@
+<% code_lessons.each do |cat, lessons| %>
+  <h2><%= cat %></h2>
+  <ul>
+  <% lessons.each do |lesson| %>
+  <% if lesson == @next_code_lesson %>
+    <li><%= link_to "Lesson #{lesson.level}: #{lesson.title}", @next_code_lesson %></li>
+  <% else %>
+    <% if completed_code_lessons.include?(lesson) %>
+      <li class="completed"> <%= link_to "Lesson #{lesson.level}: #{lesson.title}", lesson %></li>
+    <% else %>
+      <li class="incomplete">Lesson <%= lesson.level %>: <%= lesson.title %></li>
+    <% end %>
+  <% end %>
+  </ul>
+<% end %>

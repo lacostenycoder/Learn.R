@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20140427221948) do
     t.string   "avatar"
     t.string   "username"
     t.integer  "score"
+    t.integer  "global_level"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

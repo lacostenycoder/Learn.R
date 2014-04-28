@@ -10,7 +10,9 @@ describe CodeLesson do
                             start_row: 5,
                             start_col: 1,
                             solution_row: 1,
-                            solution_col: 5)}
+                            solution_col: 5,
+                            title: 'Test title',
+                            category: 'Test category')}
 
   it { should validate_presence_of :lesson_text}
   it { should validate_presence_of :question_text}
@@ -21,6 +23,8 @@ describe CodeLesson do
   it { should validate_presence_of :start_col}
   it { should validate_presence_of :solution_row}
   it { should validate_presence_of :solution_col}
+  it { should validate_presence_of :title}
+  it { should validate_presence_of :category}
 
   it { should have_and_belong_to_many(:users) }
 

@@ -11,5 +11,7 @@ class CodeLesson < ActiveRecord::Base
     validates_presence_of(:start_col)
     validates_presence_of(:solution_row)
     validates_presence_of(:solution_col)
+    validates_presence_of(:title)
+    validates_presence_of(:category)
 
 end

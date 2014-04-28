@@ -8,12 +8,26 @@ feature 'Page should display list of Lessons started or completed' do
                             username: "somekid",
                             password: "butts",
                             password_confirmation: "butts"})
+
+    lesson1 = CodeLesson.create(
+                            title: "Code Lesson 1",
+                            category: "Coding",
+                            lesson_text: "This is a test okay",
+                            question_text: "Will this test work?",
+                            img: "http://placesheen.com/200/300 ",
+                            level: 1,
+                            points: 20,
+                            start_row: 5,
+                            start_col: 1,
+                            solution_row: 1,
+                            solution_col: 5)
+
     sign_in("somekid@fakemail.com", "butts")
     new_user.update(score: 40) # completed some lessons
   end
 
   scenario "should take us to code lesson 1 when clicked" do
-    click_link("Code Lesson 1")
+    click_link("Lesson 1: #{lesson1.title}")
     expect(page).to have_content("Welcome to Code Lesson 1")
   end
 
