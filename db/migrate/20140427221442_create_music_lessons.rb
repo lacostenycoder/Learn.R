@@ -7,6 +7,8 @@ class CreateMusicLessons < ActiveRecord::Migration
       t.text :lesson_text
       t.text :question_text
       t.text :solution_key_pattern
+      t.string :category
+      t.string :title
     end
   end
 end

@@ -10,6 +10,8 @@ class CreateCodeLessons < ActiveRecord::Migration
       t.integer :start_col
       t.integer :solution_row
       t.integer :solution_col
+      t.string :category
+      t.string :title
     end
   end
 end

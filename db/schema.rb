@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20140427221948) do
     t.integer "start_col"
     t.integer "solution_row"
     t.integer "solution_col"
+    t.string  "category"
+    t.string  "title"
   end
 
   create_table "code_lessons_users", id: false, force: true do |t|
@@ -43,6 +45,8 @@ ActiveRecord::Schema.define(version: 20140427221948) do
     t.text    "lesson_text"
     t.text    "question_text"
     t.text    "solution_key_pattern"
+    t.string  "category"
+    t.string  "title"
   end
 
   create_table "music_lessons_users", id: false, force: true do |t|

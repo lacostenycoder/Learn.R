@@ -5,3 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+MusicLesson .create(
+                      lesson_text: "This is a test okay",
+                      question_text: "Will this test work?",
+                      img: "http://placesheen.com/200/300 ",
+                      level: 1,
+                      points: 20,
+                      solution_key_pattern: "65, 65, 88",
+                      category: "Scales",
+                      title: "Major Scale"
+                      )
