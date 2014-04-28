@@ -1,1 +1,26 @@
-<h1>Welcome to <%= @lesson.title %></h1>
+<div>
+<h1><%= @lesson.title %></h1>
+<p class="points"><%= @lesson.points %></p>
+
+<div class="canvas">Place Canvas Here</div>
+
+<div class="text">
+
+  <p><%= @lesson.lesson_text %></p>
+  <p><%= @lesson.question_text %></p>
+
+  <div>
+      <% form_tag( @lesson, remote: true) do |f| %>
+
+      <%= label_tag(:answer, "Enter your answer") %>
+      <%= text_field_tag :answer %>
+
+      <%= submit_tag( "Submit Answer") %>
+
+    <% end %>
+  </div>
+
+</div>
+
+
+</div>
