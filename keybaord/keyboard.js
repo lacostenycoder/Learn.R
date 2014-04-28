@@ -28,6 +28,10 @@ var keyCheck;
     playKey(playKeyId);
   });
 
+  $('.lesson').click(function(){
+    startLesson();
+  })
+
   $( "body" ).on( "keydown", function( event ) {
     keyCheck = event.which;
     console.log(keyCheck);
@@ -43,9 +47,14 @@ var keyCheck;
     $('.player').empty();
     var fileName = keyId+'.mp3';
     var audioTag = $('<audio src=samples/' + keyId + '.mp3></audio>');
-    //var audioId = 'p'+keyId;
     audioTag.appendTo('.player');
     $('audio').eq(0).trigger('play');
   }
+
+  function startLesson(){
+    keyCheck=65;
+    playKey(keyLookup[keyCheck]);
+  }
+
 });
 
