@@ -11,6 +11,7 @@ feature 'Page should display list of Coding lessons available to the user'  do
                             question_text: "Will this test work?",
                             img: "http://placesheen.com/200/300 ",
                             level: 1,
+                            global_level: 1,
                             points: 20,
                             start_row: 5,
                             start_col: 1,
@@ -24,6 +25,7 @@ feature 'Page should display list of Coding lessons available to the user'  do
                             question_text: "How do we make this guy move to a building",
                             img: "http://superman.com/superman.jpeg ",
                             level: 1,
+                            global_level: 2,
                             points: 20,
                             start_row: 2,
                             start_col: 4,
@@ -53,13 +55,15 @@ feature 'Page should display list of Coding lessons available to the user'  do
 
   scenario "expect lessons not up to to be not clickable and greyed out" do
     lesson2 = CodeLesson.all.last
-    expect(page.has_no_link?("Lesson 2: #{lesson2.title}")).to be_true
+    expect(page.has_no_link?("Lesson 2: #{lesson2.title}")).to eq(true)
   end
 
   scenario "expect lessons completed to have completed class tag" do
     lesson1 = CodeLesson.all.first
+    new_user = User.all.first
     new_user.code_lessons << lesson1
-    expect(page.has_selector?('li.completed')).to be_true
+    visit("/users/#{new_user.id}")
+    expect(page.has_selector?('li.completed')).to eq(true)
   end
 
 end

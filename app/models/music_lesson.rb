@@ -4,6 +4,7 @@ class MusicLesson < ActiveRecord::Base
 
   validates_presence_of(:points)
   validates_presence_of(:level)
+  validates_presence_of(:global_level)
   validates_presence_of(:img)
   validates_presence_of(:lesson_text)
   validates_presence_of(:question_text)

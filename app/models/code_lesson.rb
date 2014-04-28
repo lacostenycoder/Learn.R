@@ -6,6 +6,7 @@ class CodeLesson < ActiveRecord::Base
     validates_presence_of(:question_text)
     validates_presence_of(:img)
     validates_presence_of(:level)
+    validates_presence_of(:global_level)
     validates_presence_of(:points)
     validates_presence_of(:start_row)
     validates_presence_of(:start_col)

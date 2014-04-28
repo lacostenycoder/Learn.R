@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe MusicLesson do
   subject(:music_lesson) {MusicLesson.create(
-                            points: 10, level: 10, img: "http://google.com/me.jpg",
+                            points: 10, level: 10, global_level: 1, img: "http://google.com/me.jpg",
                             lesson_text: "This is a test for music",
                             question_text: "What are we testing today?",
                             solution_key_pattern: "B5, H6, I7",

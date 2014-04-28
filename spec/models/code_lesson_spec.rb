@@ -6,6 +6,7 @@ describe CodeLesson do
                             question_text: "Will this test work?",
                             img: "http://placesheen.com/200/300 ",
                             level: 1,
+                            global_level: 1,
                             points: 20,
                             start_row: 5,
                             start_col: 1,
@@ -25,6 +26,7 @@ describe CodeLesson do
   it { should validate_presence_of :solution_col}
   it { should validate_presence_of :title}
   it { should validate_presence_of :category}
+  it { should validate_presence_of :global_level}
 
   it { should have_and_belong_to_many(:users) }
 
