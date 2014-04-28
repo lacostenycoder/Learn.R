@@ -13,4 +13,12 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :code_lessons
   has_and_belongs_to_many :music_lessons
 
+  before_create :set_score
+
+  private
+
+    def set_score
+      self.score = 0
+    end
+
 end
