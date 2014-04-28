@@ -2,9 +2,9 @@
 <%= link_to 'Edit Info', edit_user_registration_path %>
 
 <h2>Code Lessons</h2>
-<%= render partial: 'code_lessons/index', locals: {code_lessons: @code_lessons, completed_code_lessons: @completed_code_lessons} %>
+<%= render partial: 'code_lessons/index', locals: {code_lessons: @code_lessons, completed_code_lessons: @completed_code_lessons, next_code_lesson: @next_code_lesson} %>
 
 
 <h2>Music Lessons</h2>
 
-<%= render partial: 'music_lessons/index', locals: { music_lessons: @music_lessons} %>
+<%= render partial: 'music_lessons/index', locals: { music_lessons: @music_lessons, completed_music_lessons: @completed_music_lessons, next_music_lesson: @next_music_lesson} %>
