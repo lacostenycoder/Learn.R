@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20140427221948) do
     t.string  "img"
     t.text    "lesson_text"
     t.text    "question_text"
-    t.string  "solution_key_pattern"
+    t.text    "solution_key_pattern"
     t.string  "category"
     t.string  "title"
   end

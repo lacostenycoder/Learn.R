@@ -8,6 +8,7 @@ describe MusicLesson do
                             solution_key_pattern: "B5, H6, I7",
                             category: "Scales",
                             title: "Major Scale")}
+                            solution_key_pattern: "B5, H6, I7")}
 
   it { should validate_presence_of :points}
   it { should validate_presence_of :level}
