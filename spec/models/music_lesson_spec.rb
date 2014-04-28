@@ -7,7 +7,7 @@ describe MusicLesson do
                             question_text: "What are we testing today?",
                             solution_key_pattern: "B5, H6, I7",
                             category: "Scales",
-                            title: "Major Scale")}
+                            title: "Major Scale",
                             solution_key_pattern: "B5, H6, I7")}
 
   it { should validate_presence_of :points}
