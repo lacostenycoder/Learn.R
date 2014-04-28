@@ -4,4 +4,6 @@ LearnR::Application.routes.draw do
   resources :users, only: [:show]
   root to: "welcome#index"
 
+  resources :code_lessons, only: [:show]
+
 end
