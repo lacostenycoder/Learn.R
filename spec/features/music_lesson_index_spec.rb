@@ -9,6 +9,7 @@ feature "A Music Lessons Page shows Lessons" do
     MusicLesson.create!({
             points: 100,
             level: 1,
+            global_level: 1,
             img: "http://placesheen.com/200/300",
             lesson_text: "This is a C Major Scale. Listen to the notes and watch as they light up on the keyboard.  Then play them back using your computer.",
             question_text:"The notes in a C Major Scale are: C,D,E,F,G,A,B,C.",
@@ -30,13 +31,14 @@ feature "A Music Lessons Page shows Lessons" do
 
 
   scenario "should display the titles and categories of the lessons" do
-    music = MusicLesson.find_by(title: 'C Major Scale')
-    expect(page).to have_content(music.category)
-    expect(page).to have_content(music.title)
+    lesson = MusicLesson.find_by(title: 'C Major Scale')
+    expect(page).to have_content(lesson.category)
+    expect(page).to have_content(lesson.title)
   end
 
   scenario "Clicking on a music lesson link should take you to the appropriate lesson" do
-    click_link("Lesson 1")
+    lesson = MusicLesson.find_by(title: 'C Major Scale')
+    click_link("Lesson #{lesson.level}: #{lesson1.title}")
     expect(page).to have_content("Lesson 1")
   end
 
