@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20140427221948) do
     t.string  "img"
     t.text    "lesson_text"
     t.text    "question_text"
-    t.integer "solution_key_pattern"
+    t.text    "solution_key_pattern"
   end
 
   create_table "music_lessons_users", id: false, force: true do |t|

@@ -6,7 +6,7 @@ class CreateMusicLessons < ActiveRecord::Migration
       t.string :img
       t.text :lesson_text
       t.text :question_text
-      t.integer :solution_key_pattern
+      t.text :solution_key_pattern
     end
   end
 end
