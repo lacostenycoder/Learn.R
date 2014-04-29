@@ -1,0 +1,79 @@
+// This is a manifest file that'll be compiled into application.js, which will include all the files
+// listed below.
+//
+// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
+// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
+//
+// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
+// compiled file.
+//
+// Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
+// about supported directives.
+//
+//= require jquery
+//= require jquery_ujs
+//= require turbolinks
+//= require_tree .
+
+var starge, bird, background;
+var birdImage = new Image();
+var backgroundImage = new Image();
+var startRow, startCol;
+var solutionRow, solutionCol;
+var xstep = 127;
+var ystep = 74;
+var pixelConverter = {x0: 33, y0: 10};
+
+// var commandConverter = {'moveUp();': moveImageOneUnitUp,
+//                         'moveDown();': moveImageOneUnitDown,
+//                         'moveLeft();': moveImageOneUnitLeft,
+//                         'moveRight();': moveImageOneUnitRight};
+
+function getLesson() {
+  var lessonID = $('.lesson-id').eq(0).data().id;
+  var lesson = $.ajax({
+    url: ('/code_lessons/' + lessonID),
+    method: 'get',
+    dataType: 'json',
+    async: false
+  });
+  return lesson.responseJSON;
+}
+
+function init(lesson) {
+  startRow = lesson.start_row;
+  startCol = lesson.start_col;
+  solutionRow = lesson.solution_row;
+  solutionCol = lesson.solution_col;
+  stage = new createjs.Stage(document.getElementById("lessoncanvas"));
+  birdImage.src = "<%= asset_path 'bird.png' %>";
+  birdImage.name = 'bird';
+  backgroundImage.src = "<%= asset_path 'grid.png' %>";
+  backgroundImage.name = 'background';
+  backgroundImage.onload = loadGraphics;
+}
+
+function loadGraphics() {
+  background = new createjs.Bitmap(backgroundImage);
+  stage.addChild(background);
+  bird = new createjs.Bitmap(birdImage);
+  bird.x = startRow;
+  bird.y = startCol;
+  stage.addChild(bird);
+  stage.update();
+}
+
+function throwError() {
+  $('.errors').empty();
+  $('.errors').append('<p>Oops looks like something went wrong</p>');
+}
+
+function ready() {
+  if ($('#code_lessons_page')[0] !== undefined) {
+    var lesson = getLesson();
+    init(lesson);
+  }
+}
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
