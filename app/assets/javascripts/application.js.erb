@@ -141,7 +141,8 @@ function initMusicLesson() {
 
   function playKey(keyId){
     $('.player').empty();
-    var audioTag = $('<audio src=samples/' + keyId + '.mp3></audio>');
+    //This might not work in produciton
+    var audioTag = $('<audio src="/assets/samples/' + keyId + '.mp3"></audio>');
     audioTag.appendTo('.player');
     $('audio').eq(0).trigger('play');
   }
