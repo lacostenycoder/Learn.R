@@ -15,15 +15,23 @@
 //= require turbolinks
 //= require_tree .
 
-var starge, bird, background;
+var starge, bird, background, orientation;
 var birdImage = new Image();
 var backgroundImage = new Image();
 var gridRow, gridCol;
 var solutionRow, solutionCol;
-var grid = [[0, 0, 0, 0],
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
-            [0, 0, 0, 0]];
+var grid1 = [[0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0]];
+var grid2 = [[0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0],
+             [0, 0, 1, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0]];
 
 
 function getLesson() {
@@ -37,7 +45,7 @@ function getLesson() {
   return lesson.responseJSON;
 }
 
-function init(lesson) {
+function init_code_lesson(lesson) {
   gridRow = lesson.start_row;
   gridCol = lesson.start_col;
   solutionRow = lesson.solution_row;
@@ -45,7 +53,9 @@ function init(lesson) {
   stage = new createjs.Stage(document.getElementById("lessoncanvas"));
   birdImage.src = "<%= asset_path 'bird.png' %>";
   birdImage.name = 'bird';
-  backgroundImage.src = "<%= asset_path 'grid.png' %>";
+
+  // This may cause problems when we compile assets in production
+  backgroundImage.src = "/assets/"+lesson.img;
   backgroundImage.name = 'background';
   backgroundImage.onload = loadGridGraphics;
 }
@@ -60,21 +70,19 @@ function loadGridGraphics() {
 
 function loadBirdGraphics() {
   bird = new createjs.Bitmap(birdImage);
-  bird.x = gridRow;
-  bird.y = gridCol;
+  bird.x = gridRow + bird.image.width/2;
+  bird.y = gridCol + bird.image.height/2;
+  bird.regX = bird.image.width/2;
+  bird.regY = bird.image.height/2;
+  orientation = 'east';
   stage.addChild(bird);
   stage.update();
-}
-
-function throwError() {
-  $('.errors').empty();
-  $('.errors').append('<p>Oops looks like something went wrong</p>');
 }
 
 function ready() {
   if ($('#code_lessons_page')[0] !== undefined) {
     var lesson = getLesson();
-    init(lesson);
+    init_code_lesson(lesson);
   }
 }
 

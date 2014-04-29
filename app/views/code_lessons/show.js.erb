@@ -1,11 +1,18 @@
 //Logic for moving the player
 var YPIXELS = 100;
 var XPIXELS = 100;
+var orientationChanger = {east:  'north',
+                          north: 'west',
+                          west:  'south',
+                          south: 'east'}
 
-var commandConverter = {'moveUp();': moveImageOneUnitUp,
-                        'moveDown();': moveImageOneUnitDown,
-                        'moveLeft();': moveImageOneUnitLeft,
-                        'moveRight();': moveImageOneUnitRight};
+var directionPicker = {east:  moveImageOneUnitEast,
+                       west:  moveImageOneUnitWest,
+                       north: moveImageOneUnitNorth,
+                       south: moveImageOneUnitSouth}
+
+var commandConverter = {'turnLeft();': turnLeft,
+                        'moveForward();': moveForward};
 
 function throwError() {
   $('.errors').empty();
@@ -28,28 +35,38 @@ function runCommands(commands) {
     if (counter >= commands.length) {
       clearInterval(i);
     }
-  }, 300);
+  }, 1000);
 }
 
-function moveImageOneUnitRight(image) {
+function turnLeft(image) {
+  orientation = orientationChanger[orientation];
+  image.rotation = image.rotation - 90;
+  stage.update();
+}
+
+function moveForward(image) {
+  directionPicker[orientation](image);
+}
+
+function moveImageOneUnitEast(image) {
   if (image.x + XPIXELS < stage.canvas.width) {
     image.x += XPIXELS;
   }
 }
 
-function moveImageOneUnitLeft(image) {
+function moveImageOneUnitWest(image) {
   if (image.x - XPIXELS > 0) {
     image.x -= XPIXELS;
   }
 }
 
-function moveImageOneUnitDown(image) {
+function moveImageOneUnitSouth(image) {
   if (image.y + YPIXELS < stage.canvas.height) {
     image.y += YPIXELS;
   }
 }
 
-function moveImageOneUnitUp(image) {
+function moveImageOneUnitNorth(image) {
   if (image.y - YPIXELS > 0) {
     image.y -= YPIXELS;
   }
