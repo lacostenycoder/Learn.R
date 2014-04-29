@@ -21,6 +21,6 @@ https://trello.com/b/cyHEYK2C/learn-r
 
 ##ERD
 
-![Learnr](https://github.com/lacostenycoder/Learn.R/blob/development/learnrERDv2.png)
+![Learnr](https://raw.githubusercontent.com/lacostenycoder/Learn.R/development/learnrERDv2.png)
 
 ##Site
