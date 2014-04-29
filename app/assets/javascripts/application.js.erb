@@ -15,15 +15,11 @@
 //= require turbolinks
 //= require_tree .
 
-var stage;
+var starge, bird, background;
 var birdImage = new Image();
-var bird;
 var backgroundImage = new Image();
-var background;
-var startRow;
-var startCol;
-var solutionRow;
-var solutionCol;
+var startRow, startCol;
+var solutionRow, solutionCol;
 var xstep = 127;
 var ystep = 74;
 var pixelConverter = {x0: 33, y0: 10};
@@ -33,25 +29,22 @@ var pixelConverter = {x0: 33, y0: 10};
 //                         'moveLeft();': moveImageOneUnitLeft,
 //                         'moveRight();': moveImageOneUnitRight};
 
-function setCoords() {
+function getLesson() {
   var lessonID = $('.lesson-id').eq(0).data().id;
-  $.ajax({
+  var lesson = $.ajax({
     url: ('/code_lessons/' + lessonID),
     method: 'get',
     dataType: 'json',
-  }).done(function(lesson){
-    startRow    = lesson.start_row;
-    console.log(startRow);
-    startCol    = lesson.start_col;
-    console.log(startCol);
-    solutionRow = lesson.solution_row;
-    console.log(solutionRow);
-    solutionCol = lesson.solution_col;
-    console.log(solutionCol);
+    async: false
   });
+  return lesson.responseJSON;
 }
 
-function init() {
+function init(lesson) {
+  startRow = lesson.start_row;
+  startCol = lesson.start_col;
+  solutionRow = lesson.solution_row;
+  solutionCol = lesson.solution_col;
   stage = new createjs.Stage(document.getElementById("lessoncanvas"));
   birdImage.src = "<%= asset_path 'bird.png' %>";
   birdImage.name = 'bird';
@@ -64,8 +57,8 @@ function loadGraphics() {
   background = new createjs.Bitmap(backgroundImage);
   stage.addChild(background);
   bird = new createjs.Bitmap(birdImage);
-  bird.x = 33;
-  bird.y = 10;
+  bird.x = startRow;
+  bird.y = startCol;
   stage.addChild(bird);
   stage.update();
 }
@@ -77,8 +70,8 @@ function throwError() {
 
 function ready() {
   if ($('#code_lessons_page')[0] !== undefined) {
-    setCoords();
-    init();
+    var lesson = getLesson();
+    init(lesson);
   }
 }
 
