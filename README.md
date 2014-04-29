@@ -21,6 +21,6 @@ https://trello.com/b/cyHEYK2C/learn-r
 
 ##ERD
 
-
+https://www.dropbox.com/s/kbsosp4congxk6q/learnrERDv2.png
 
 ##Site
