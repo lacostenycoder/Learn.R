@@ -11,7 +11,7 @@
     <div class="canvas">
       <canvas id="lessoncanvas" height="600" width="600"></canvas>
     </div>
-          <%= form_tag( @lesson, remote: true) do |f| %>
+          <%= form_tag( @lesson, method: :get, remote: true) do |f| %>
 
           <%= label_tag(:answer, "Enter your answer") %>
           <%= text_area_tag :answer %>

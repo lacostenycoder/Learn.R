@@ -1,0 +1,59 @@
+//Logic for moving the player
+var YPIXELS = 100;
+var XPIXELS = 100;
+
+var commandConverter = {'moveUp();': moveImageOneUnitUp,
+                        'moveDown();': moveImageOneUnitDown,
+                        'moveLeft();': moveImageOneUnitLeft,
+                        'moveRight();': moveImageOneUnitRight};
+
+function throwError() {
+  $('.errors').empty();
+  $('.errors').append('<p>Oops looks like something went wrong</p>');
+}
+
+function runCommands(commands) {
+  var counter = 0;
+  var i = setInterval(function(){
+    if (counter >= 0) {
+      if (commandConverter[commands[counter]]) {
+        commandConverter[commands[counter]](bird);
+        stage.update();
+      } else {
+        throwError();
+        clearInterval(i);
+      }
+    }
+    counter ++;
+    if (counter >= commands.length) {
+      clearInterval(i);
+    }
+  }, 300);
+}
+
+function moveImageOneUnitRight(image) {
+  if (image.x + XPIXELS < stage.canvas.width) {
+    image.x += XPIXELS;
+  }
+}
+
+function moveImageOneUnitLeft(image) {
+  if (image.x - XPIXELS > 0) {
+    image.x -= XPIXELS;
+  }
+}
+
+function moveImageOneUnitDown(image) {
+  if (image.y + YPIXELS < stage.canvas.height) {
+    image.y += YPIXELS;
+  }
+}
+
+function moveImageOneUnitUp(image) {
+  if (image.y - YPIXELS > 0) {
+    image.y -= YPIXELS;
+  }
+}
+
+var commands = $('textarea').val().split("\n");
+runCommands(commands);
