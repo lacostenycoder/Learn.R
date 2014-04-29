@@ -40,6 +40,17 @@ function getLesson() {
   return lesson.responseJSON;
 }
 
+function getMusicLesson() {
+  var lessonID = $('.music-lesson-id').eq(0).data().id;
+  var lesson = $.ajax({
+    url: ('/music_lessons/' + lessonID),
+    method: 'get',
+    dataType: 'json',
+    async: false
+  });
+  return lesson.responseJSON;
+}
+
 function init(lesson) {
   startRow = lesson.start_row;
   startCol = lesson.start_col;
@@ -68,7 +79,8 @@ function throwError() {
   $('.errors').append('<p>Oops looks like something went wrong</p>');
 }
 //Music Lessons Function Initialize
-function initMusicLesson() {
+function initMusicLesson(musicLessonObj) {
+
     var keyLookup = {
     90: "c2",
     83: "c-2",
@@ -97,7 +109,7 @@ function initMusicLesson() {
     73: "c5"
   }
 
-  var lessonSeq = "90, 88, 67, 86, 66, 78, 77, 81"; // this will come from database
+  var lessonSeq = musicLessonObj.solution_key_pattern; // this will come from database
   var lessonText = "Here is a C major scale. Can you play it?"
   var userInput = ""; //initialize empty strings for functions
   var keyCheck;
@@ -180,7 +192,10 @@ function initMusicLesson() {
 } //End Music Lesson
 
 function ready() {
-  initMusicLesson();
+  if ($('#music-lessons-page')[0] !== undefined) {
+    initMusicLesson(getMusicLesson());
+}
+
   if ($('#code_lessons_page')[0] !== undefined) {
     var lesson = getLesson();
     init(lesson);
