@@ -8,27 +8,34 @@ see the png file in images.
 $(document).ready(function(){
   // set library to look up key samples
   var keyLookup = {
-    65: "c2",
-    87: "c-2",
-    83: "d2",
-    69: "d-2",
-    68: "e2",
-    70: "f2",
-    84: "f-2",
-    71: "g2",
-    89: "g-2",
-    72: "a3",
-    85: "a-3",
-    74: "b3",
-    75: "c3",
-    79: "c-3",
-    76: "d3",
-    80: "d-3",
-   186: "e3",
-   222: "f3"
+    90: "c2",
+    83: "c-2",
+    88: "d2",
+    68: "d-2",
+    67: "e2",
+    86: "f2",
+    71: "f-2",
+    66: "g2",
+    72: "g-2",
+    78: "a3",
+    74: "a-3",
+    77: "b3",
+    81: "c3",
+    50: "c-3",
+    87: "d3",
+    51: "d-3",
+    69: "e3",
+    82: "f3",
+    53: "f-3",
+    84: "g3",
+    54: "g-3",
+    89: "a4",
+    55: "a-4",
+    85: "b4",
+    73: "c5"
   }
 
-  var lessonSeq = "65, 83, 68, 70, 71, 72, 74, 75"; // this will come from database
+  var lessonSeq = "90, 88, 67, 86, 66, 78, 77, 81"; // this will come from database
   var lessonText = "Here is a C major scale. Can you play it?"
   var userInput = ""; //initialize empty strings for functions
   var keyCheck;
