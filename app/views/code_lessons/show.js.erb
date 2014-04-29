@@ -1,6 +1,5 @@
 //Logic for moving the player
-var YPIXELS = 100;
-var XPIXELS = 100;
+
 var orientationChanger = {east:  'north',
                           north: 'west',
                           west:  'south',
@@ -32,8 +31,10 @@ function runCommands(commands) {
       }
     }
     counter ++;
+
     if (counter >= commands.length) {
       clearInterval(i);
+      checkWin();
     }
   }, 1000);
 }
@@ -49,26 +50,36 @@ function moveForward(image) {
 }
 
 function moveImageOneUnitEast(image) {
-  if (image.x + XPIXELS < stage.canvas.width) {
-    image.x += XPIXELS;
+  if (image.x + XGRIDUNIT < stage.canvas.width) {
+    image.x += XGRIDUNIT;
+    gridCol += 1;
   }
 }
 
 function moveImageOneUnitWest(image) {
-  if (image.x - XPIXELS > 0) {
-    image.x -= XPIXELS;
+  if (image.x - XGRIDUNIT > 0) {
+    image.x -= XGRIDUNIT;
+    gridCol -= 1;
   }
 }
 
 function moveImageOneUnitSouth(image) {
-  if (image.y + YPIXELS < stage.canvas.height) {
-    image.y += YPIXELS;
+  if (image.y + YGRIDUNIT < stage.canvas.height) {
+    image.y += YGRIDUNIT;
+    gridRow += 1;
   }
 }
 
 function moveImageOneUnitNorth(image) {
-  if (image.y - YPIXELS > 0) {
-    image.y -= YPIXELS;
+  if (image.y - YGRIDUNIT > 0) {
+    image.y -= YGRIDUNIT;
+    gridRow -= 1;
+  }
+}
+
+function checkWin() {
+  if (gridRow === solutionRow && gridCol === solutionCol) {
+    alert("YOU WIN SUCKA");
   }
 }
 

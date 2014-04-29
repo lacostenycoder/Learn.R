@@ -15,11 +15,13 @@
 //= require turbolinks
 //= require_tree .
 
-var starge, bird, background, orientation;
+var stage, bird, background, orientation;
 var birdImage = new Image();
 var backgroundImage = new Image();
 var gridRow, gridCol;
 var solutionRow, solutionCol;
+var YGRIDUNIT = 100;
+var XGRIDUNIT = 100;
 var grid1 = [[0, 0, 0, 0, 0, 0],
              [0, 0, 0, 0, 0, 0],
              [0, 0, 0, 0, 0, 0],
@@ -70,10 +72,10 @@ function loadGridGraphics() {
 
 function loadBirdGraphics() {
   bird = new createjs.Bitmap(birdImage);
-  bird.x = gridRow + bird.image.width/2;
-  bird.y = gridCol + bird.image.height/2;
   bird.regX = bird.image.width/2;
   bird.regY = bird.image.height/2;
+  bird.x = XGRIDUNIT * gridCol + bird.regX
+  bird.y = YGRIDUNIT * gridRow + bird.regY
   orientation = 'east';
   stage.addChild(bird);
   stage.update();
