@@ -1,10 +1,3 @@
-/* The following key codes should be implemented as they are standard on most browesers and will give us a full 2 octaves.
-see the png file in images.
-
- 48-57   48-57   48-57   48-57   48-57   0 to 9
- 65-90   65-90   65-90   65-90   65-90   A to Z
-
-*/
 $(document).ready(function(){
   // set library to look up key samples
   var keyLookup = {
