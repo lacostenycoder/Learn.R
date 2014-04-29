@@ -3,11 +3,11 @@
   margin-right: auto ;
   display: block;
 }
-.container {
+.container, .lesson {
   width: 1000px ;
   margin-left: 150px ;
   margin-right: auto ;
-  vertical-align:
+  vertical-align: center;
 }
 
 .key { position: relative; font-family: Helvetica; font-weight: 100; font-size: 12px;
@@ -111,5 +111,4 @@
 }
 
 .keyhover { background-color: rgb(255,192,32); }
-
 
