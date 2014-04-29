@@ -50,12 +50,17 @@ function init(lesson) {
   birdImage.name = 'bird';
   backgroundImage.src = "<%= asset_path 'grid.png' %>";
   backgroundImage.name = 'background';
-  backgroundImage.onload = loadGraphics;
+  backgroundImage.onload = loadGridGraphics;
 }
 
-function loadGraphics() {
+function loadGridGraphics() {
   background = new createjs.Bitmap(backgroundImage);
   stage.addChild(background);
+  stage.update();
+  loadBirdGraphics();
+}
+
+function loadBirdGraphics() {
   bird = new createjs.Bitmap(birdImage);
   bird.x = startRow;
   bird.y = startCol;
