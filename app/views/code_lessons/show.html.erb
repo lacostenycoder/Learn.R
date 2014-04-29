@@ -3,14 +3,14 @@
     <p>Lesson Topics: <%= @lesson.lesson_text %></p>
     <p class="points">Available Points: <%= @lesson.points %></p>
 
-    <div class="canvas">Place Canvas Here</div>
+    <p>Instructions: <%= @lesson.question_text %></p>
+    <%= content_tag(:div, class: "lesson-id", 'data-id' => @lesson.id) do %>
+    <% end %>
+    <div id="code_lessons_page"></div>
 
-    <div class="text">
-
-
-      <p>Instructions: <%= @lesson.question_text %></p>
-
-      <div>
+    <div class="canvas">
+      <canvas id="lessoncanvas" height="300" width="500"></canvas>
+    </div>
           <%= form_tag( @lesson, remote: true) do |f| %>
 
           <%= label_tag(:answer, "Enter your answer") %>
