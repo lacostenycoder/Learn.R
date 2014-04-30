@@ -9,4 +9,14 @@ class CodeLessonsController < ApplicationController
     end
   end
 
+  def update_win
+    lesson = CodeLesson.find(params[:id])
+    unless current_user.code_lessons.include?(lesson)
+      current_user.code_lessons << lesson
+      current_user.score += lesson.points
+      current_user.save
+    end
+    @next_lesson = CodeLesson.find_by(global_level: lesson.global_level + 1)
+  end
+
 end

@@ -17,7 +17,7 @@
           <h1><%= current_user.username %></h1>
           <%= link_to 'Account',  current_user %>
         </li>
-        <li>Total Score: <%= current_user.score %></li>
+        <li>Total Score: <span id='total-score'><%= current_user.score %></span></li>
       <% end %>
     </ul>
     <hr>

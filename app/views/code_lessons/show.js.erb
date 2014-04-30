@@ -36,7 +36,7 @@ function runCommands(commands) {
       clearInterval(i);
       checkWin();
     }
-  }, 1000);
+  }, 200);
 }
 
 function turnLeft(image) {
@@ -79,7 +79,10 @@ function moveImageOneUnitNorth(image) {
 
 function checkWin() {
   if (gridRow === solutionRow && gridCol === solutionCol) {
-    alert("YOU WIN SUCKA");
+    $.ajax({
+      url: ('/code_lessons/' + lessonID + '/update-win'),
+      method: 'post'
+    });
   }
 }
 

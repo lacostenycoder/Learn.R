@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require_tree .
 
+var lessonID;
 var stage, bird, background, orientation;
 var birdImage = new Image();
 var backgroundImage = new Image();
@@ -35,9 +36,8 @@ var grid2 = [[0, 0, 0, 0, 0, 0],
              [0, 0, 0, 0, 0, 0],
              [0, 0, 0, 0, 0, 0]];
 
-
 function getCodeLesson() {
-  var lessonID = $('.lesson-id').eq(0).data().id;
+  lessonID = $('.lesson-id').eq(0).data().id;
   var lesson = $.ajax({
     url: ('/code_lessons/' + lessonID),
     method: 'get',
