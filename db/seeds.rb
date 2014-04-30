@@ -140,3 +140,21 @@ User.create(email: "a@ga.co",
             username: "akamel",
             password: "abc12345",
             password_confirmation: "abc12345")
+
+User.create(email: "j@ga.co",
+            name: "Jesse Sessler",
+            username: "jsessler",
+            password: "abc12345",
+            password_confirmation: "abc12345")
+
+User.create(email: "d@ga.co",
+            name: "David Kim",
+            username: "dkim",
+            password: "abc12345",
+            password_confirmation: "abc12345")
+
+User.create(email: "l@ga.co",
+            name: "Lance Jordan",
+            username: "ljordan",
+            password: "abc12345",
+            password_confirmation: "abc12345")

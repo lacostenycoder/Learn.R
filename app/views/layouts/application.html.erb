@@ -11,6 +11,7 @@
   <body>
     <ul>
       <li><%= link_to_unless_current 'Home', root_path %></li>
+      <li><%= link_to 'Leaderboard', users_path %></li>
       <% if user_signed_in? %>
         <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
         <li>

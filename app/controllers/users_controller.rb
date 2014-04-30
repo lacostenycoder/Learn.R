@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
    def index
     @users = User.all
+    @sorted_users = User.order(score: :desc)
    end
 
   def show
