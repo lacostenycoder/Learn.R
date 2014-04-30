@@ -1,9 +1,25 @@
-.body {
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+
+
+ */
+
+/*.body {
   margin-left: auto ;
   margin-right: auto ;
   display: block;
-}
-.container, .lesson {
+  background: white;
+}*/
+
+.container, .musiclesson {
   width: 1000px ;
   margin-left: 150px ;
   margin-right: auto ;
@@ -36,7 +52,7 @@
   width: 30px;
   height: 100px;
   left: -20px;
-  color: : #ffffff;
+  color: #ffffff;
   text-shadow: 0px -1px 1px rgba(255,255,255,0.5);
   background-color: rgb(0, 0, 0);
   border: 1px solid rgba(32,32,32,0.2);
@@ -83,7 +99,7 @@
 
 
 #c2, #c3{ left: 0;}
-#c-2, #c-3 #{left: -20px;}
+#c-2, #c-3 {left: -20px;}
 #d2 , #d3 {left: -32px;}
 #d-2, #d-3 {left: -44px;}
 #e2 , #e3 {left: -64px;}
@@ -111,4 +127,3 @@
 }
 
 .keyhover { background-color: rgb(255,192,32); }
-

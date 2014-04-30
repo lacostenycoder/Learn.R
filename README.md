@@ -1,6 +1,6 @@
 #LearnR
 
-A site for young students to learn code concepts, music, and more.  At our core we want LearnR to create an fun, playful environment that introduces you children to fundamental concepts that we use throughout our life.  Some of these concepts include general logic to figuring out fractions, or even comparisions and determining value in things.
+A site for young students to learn code concepts, music, and more. At our core we want LearnR to create a fun, playful environment that introduces your children to fundamental concepts that we use throughout our life.
 
 ----------------
 ##Technologies
@@ -13,6 +13,7 @@ A site for young students to learn code concepts, music, and more.  At our core 
 * Devise
 * Heroku
 * ActionMailer
+* Easel.JS
 
 ----------
 ##User Stories
@@ -24,3 +25,12 @@ https://trello.com/b/cyHEYK2C/learn-r
 ![Learnr](https://raw.githubusercontent.com/lacostenycoder/Learn.R/development/learnrERDv2.png)
 
 ##Site
+
+##Team members
+Jesse Sessler
+
+Ash Kamel
+
+Lance Jordan
+
+David Kim
