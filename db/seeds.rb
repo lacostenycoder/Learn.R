@@ -54,8 +54,8 @@ codelesson1 = CodeLesson.create(
                             level: 1,
                             global_level: 1,
                             points: 20,
-                            start_row: 5,
-                            start_col: 1,
+                            start_row: 1,
+                            start_col: 2,
                             solution_row: 5,
                             solution_col: 2)
 

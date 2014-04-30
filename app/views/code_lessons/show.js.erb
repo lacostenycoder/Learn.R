@@ -49,31 +49,41 @@ function moveForward(image) {
   directionPicker[orientation](image);
 }
 
+// Grid does not change dynamically yet
+
 function moveImageOneUnitEast(image) {
   if (image.x + XGRIDUNIT < stage.canvas.width) {
-    image.x += XGRIDUNIT;
-    gridCol += 1;
+    if (grid2[gridRow][gridCol + 1] !== 1) {
+      image.x += XGRIDUNIT;
+      gridCol += 1;
+    }
   }
 }
 
 function moveImageOneUnitWest(image) {
   if (image.x - XGRIDUNIT > 0) {
-    image.x -= XGRIDUNIT;
-    gridCol -= 1;
+    if (grid2[gridRow][gridCol - 1] !== 1) {
+      image.x -= XGRIDUNIT;
+      gridCol -= 1;
+    }
   }
 }
 
 function moveImageOneUnitSouth(image) {
   if (image.y + YGRIDUNIT < stage.canvas.height) {
-    image.y += YGRIDUNIT;
-    gridRow += 1;
+    if (grid2[gridRow + 1][gridCol] !== 1) {
+      image.y += YGRIDUNIT;
+      gridRow += 1;
+    }
   }
 }
 
 function moveImageOneUnitNorth(image) {
   if (image.y - YGRIDUNIT > 0) {
-    image.y -= YGRIDUNIT;
-    gridRow -= 1;
+    if (grid2[gridRow][gridCol - 1] !== 1) {
+      image.y -= YGRIDUNIT;
+      gridRow -= 1;
+    }
   }
 }
 
