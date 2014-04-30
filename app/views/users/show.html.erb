@@ -11,3 +11,11 @@
 
  <%= content_tag(:div, class: "user-id", 'data-id' => @user.id) do %>
   <% end %>
+
+<% if current_user.try(:admin?) %>
+  <%= link_to "All Music Lessons", music_lessons_path %>
+  <%= link_to "Create a new Music Lesson", new_music_lesson_path %>
+
+  <%= link_to "All Code Lessons", code_lessons_path %>
+  <%= link_to "Create a new Code Lesson", new_code_lesson_path %>
+<% end %>
