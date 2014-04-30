@@ -2,6 +2,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    respond_to do |format|
+      format.html {}
+      format.json { render json: @user.to_json }
+    end
+
     @code_lessons = CodeLesson.all.group_by(&:category)
     @completed_code_lessons = @user.code_lessons
     if @user.code_lessons.empty?

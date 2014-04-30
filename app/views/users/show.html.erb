@@ -8,3 +8,6 @@
 <h2>Music Lessons</h2>
 
 <%= render partial: 'music_lessons/index', locals: { music_lessons: @music_lessons, completed_music_lessons: @completed_music_lessons, next_music_lesson: @next_music_lesson} %>
+
+ <%= content_tag(:div, class: "user-id", 'data-id' => @user.id) do %>
+  <% end %>

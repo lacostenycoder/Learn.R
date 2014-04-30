@@ -15,7 +15,7 @@ musiclesson1 = MusicLesson.create(
                       img: "http://placesheen.com/200/300 ",
                       level: 1,
                       points: 20,
-                      solution_key_pattern: "65, 65, 88",
+                      solution_key_pattern: "90, 88, 67",
                       category: "Scales",
                       title: "Major Scale",
                       global_level: 1
