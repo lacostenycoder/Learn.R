@@ -1,0 +1,87 @@
+//Logic for moving the player
+
+var orientationChanger = {east:  'north',
+                          north: 'west',
+                          west:  'south',
+                          south: 'east'}
+
+var directionPicker = {east:  moveImageOneUnitEast,
+                       west:  moveImageOneUnitWest,
+                       north: moveImageOneUnitNorth,
+                       south: moveImageOneUnitSouth}
+
+var commandConverter = {'turnLeft();': turnLeft,
+                        'moveForward();': moveForward};
+
+function throwError() {
+  $('.errors').empty();
+  $('.errors').append('<p>Oops looks like something went wrong</p>');
+}
+
+function runCommands(commands) {
+  var counter = 0;
+  var i = setInterval(function(){
+    if (counter >= 0) {
+      if (commandConverter[commands[counter]]) {
+        commandConverter[commands[counter]](bird);
+        stage.update();
+      } else {
+        throwError();
+        clearInterval(i);
+      }
+    }
+    counter ++;
+
+    if (counter >= commands.length) {
+      clearInterval(i);
+      checkWin();
+    }
+  }, 1000);
+}
+
+function turnLeft(image) {
+  orientation = orientationChanger[orientation];
+  image.rotation = image.rotation - 90;
+  stage.update();
+}
+
+function moveForward(image) {
+  directionPicker[orientation](image);
+}
+
+function moveImageOneUnitEast(image) {
+  if (image.x + XGRIDUNIT < stage.canvas.width) {
+    image.x += XGRIDUNIT;
+    gridCol += 1;
+  }
+}
+
+function moveImageOneUnitWest(image) {
+  if (image.x - XGRIDUNIT > 0) {
+    image.x -= XGRIDUNIT;
+    gridCol -= 1;
+  }
+}
+
+function moveImageOneUnitSouth(image) {
+  if (image.y + YGRIDUNIT < stage.canvas.height) {
+    image.y += YGRIDUNIT;
+    gridRow += 1;
+  }
+}
+
+function moveImageOneUnitNorth(image) {
+  if (image.y - YGRIDUNIT > 0) {
+    image.y -= YGRIDUNIT;
+    gridRow -= 1;
+  }
+}
+
+function checkWin() {
+  if (gridRow === solutionRow && gridCol === solutionCol) {
+    alert("YOU WIN SUCKA");
+  }
+}
+
+var commands = $('textarea').val().split("\n");
+runCommands(commands);
