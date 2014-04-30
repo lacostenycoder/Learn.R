@@ -35,6 +35,9 @@ function initMusicLesson(musicLessonObj) {
   var keyCheck;
   var keyToPlay;
   var gameWon = false;
+  var keysPressed = [];
+  var chord = false;
+  var keyHeld = false;
 
   // set event listeners for mouse and key presses
   $('.key').click(function(){
@@ -47,15 +50,23 @@ function initMusicLesson(musicLessonObj) {
   })
 
   $( "body" ).on( "keydown", function( event ) {
-    keyCheck = event.which;
-    keyToPlay = keyLookup[keyCheck];
-    $("#"+keyToPlay ).toggleClass("keyhover");
-    playKey(keyToPlay);
-    userInput += (keyCheck + ", ").toString();
-    console.log(userInput);
+    if (!keyHeld) {
+      keyHeld = true
+      keyCheck = event.which;
+      keyToPlay = keyLookup[keyCheck];
+      $("#"+keyToPlay ).toggleClass("keyhover");
+      playKey(keyToPlay);
+      var last = keysPressed.length - 1;
+      keysPressed.push(keyCheck);
+      userInput += (keyCheck + ", ").toString();
+      console.log(userInput);
+    }
   });
 
   $( "body" ).on( "keyup", function() {
+    keyHeld = false;
+    var release = keysPressed.indexOf(keyCheck);
+    keysPressed.splice(release, 1);
     $('.key').removeClass('keyhover');
     if(!gameWon){
     checkAnswer(userInput);
@@ -72,11 +83,21 @@ function initMusicLesson(musicLessonObj) {
   }
 
   function playKey(keyId){
-    $('.player').empty();
-    //This might not work in produciton
-    var audioTag = $('<audio src="/assets/samples/' + keyId + '.mp3"></audio>');
+    if (keysPressed.indexOf(keyCheck) <= - 1) {
+      $('.player').empty();
+      var audioTag = $('<audio src="/assets/samples/' + keyId + '.mp3"></audio>');
+      audioTag.appendTo('.player');
+      $('audio').eq(0).trigger('play');
+    }
+  }
+
+
+  function playChord(keyAdd){
+    var audioTag = $('<audio src="/assets/samples/' + keyAddz + '.mp3"></audio>');
     audioTag.appendTo('.player');
-    $('audio').eq(0).trigger('play');
+    for (i = 1; i < keysPressed.length; i++){
+      $('audio').eq(i).trigger('play');
+    }
   }
 
   function startLesson(){
