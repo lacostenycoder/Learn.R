@@ -56,8 +56,8 @@ codelesson1 = CodeLesson.create(
                             points: 20,
                             start_row: 5,
                             start_col: 1,
-                            solution_row: 1,
-                            solution_col: 5)
+                            solution_row: 5,
+                            solution_col: 2)
 
 codelesson2 = CodeLesson.create(
                             title: "Code Lesson 2",
@@ -93,7 +93,6 @@ user1 = User.create({email: "a@ga.co",
                       password: "abc12345",
                       password_confirmation: "abc12345"})
 
-user1.code_lessons << codelesson1
 user1.music_lessons << musiclesson1
 
 
