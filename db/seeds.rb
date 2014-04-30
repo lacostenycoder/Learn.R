@@ -47,9 +47,9 @@ musiclesson3 = MusicLesson.create(
 
 codelesson1 = CodeLesson.create(
                             title: "Code Lesson 1",
-                            category: "Coding",
-                            lesson_text: "This is a test okay",
-                            question_text: "Will this test work?",
+                            category: "Fundamentals",
+                            lesson_text: "Doing the Fundamentals",
+                            question_text: "Move to row 5 column 2",
                             img: "grid1.png",
                             level: 1,
                             global_level: 1,
@@ -61,38 +61,34 @@ codelesson1 = CodeLesson.create(
 
 codelesson2 = CodeLesson.create(
                             title: "Code Lesson 2",
-                            category: "Coding",
-                            lesson_text: "Learning how to make superman fly",
-                            question_text: "How do we make this guy move to a building",
-                            img: "grid2.png",
+                            category: "Fundamentals",
+                            lesson_text: "Doing the Fundamentals",
+                            question_text: "Move to row 5 column 5 ",
+                            img: "grid1.png",
                             level: 2,
                             global_level: 2,
                             points: 20,
                             start_row: 2,
                             start_col: 4,
                             solution_row: 5,
-                            solution_col: 6)
+                            solution_col: 5)
 
 codelesson3 = CodeLesson.create(
                             title: "Code Lesson 3",
-                            category: "Coding",
-                            lesson_text: "Learning how to make superman fly",
-                            question_text: "How do we make this guy move to a building",
-                            img: "grid2.png",
+                            category: "Higher Level Fundamentals",
+                            lesson_text: "Doing higher level Fundamentals",
+                            question_text: "Move to row 3 column 3",
+                            img: "grid1.png",
                             level: 3,
                             global_level: 3,
                             points: 20,
                             start_row: 2,
                             start_col: 4,
-                            solution_row: 5,
-                            solution_col: 6)
+                            solution_row: 3,
+                            solution_col: 3)
 
 user1 = User.create({email: "a@ga.co",
                       name: "Ash Kamel",
                       username: "akamel",
                       password: "abc12345",
                       password_confirmation: "abc12345"})
-
-user1.music_lessons << musiclesson1
-
-
