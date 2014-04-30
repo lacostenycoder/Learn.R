@@ -37,7 +37,7 @@ class MusicLessonsController < ApplicationController
   def destroy
     @music_lesson = MusicLesson.find(params[:id])
     @music_lesson.destroy
-    redirect_to '/'
+    redirect_to root_path
   end
 
 

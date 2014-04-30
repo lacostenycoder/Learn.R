@@ -1,0 +1,9 @@
+<% @code_lessons.each do |code_lesson| %>
+  <p><%= code_lesson.title %>
+  <%= code_lesson.category %>
+  <%= code_lesson.global_level %>
+  <%= link_to code_lesson.title, code_lesson%>
+  <%= link_to "Edit this lesson", edit_code_lesson_path(code_lesson) %>
+  <%= link_to "Delete this lesson", code_lesson, method: :delete, data: { confirm: "Are you sure?" } %>
+</p>
+<% end %>
