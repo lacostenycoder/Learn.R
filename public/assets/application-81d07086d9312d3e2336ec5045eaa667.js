@@ -11496,10 +11496,12 @@ function initCodeLesson(lesson) {
   solutionCol = lesson.solution_col;
   stage = new createjs.Stage(document.getElementById("lessoncanvas"));
   birdImage.src = "/assets/bird.png";
+  console.log('made it to asset path');
+  console.log("/assets/bird.png");
   birdImage.name = 'bird';
 
-  // This may cause problems when we compile assets in production
-  backgroundImage.src = "/assets/"+lesson.img;
+  backgroundImage.src = "/assets/grid1.png";
+  // backgroundImage.src = "/assets/"+lesson.img;
   backgroundImage.name = 'background';
   backgroundImage.onload = loadGridGraphics;
 }
