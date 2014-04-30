@@ -36,7 +36,7 @@ var grid2 = [[0, 0, 0, 0, 0, 0],
              [0, 0, 0, 0, 0, 0]];
 
 
-function getLesson() {
+function getCodeLesson() {
   var lessonID = $('.lesson-id').eq(0).data().id;
   var lesson = $.ajax({
     url: ('/code_lessons/' + lessonID),
@@ -47,7 +47,7 @@ function getLesson() {
   return lesson.responseJSON;
 }
 
-function init_code_lesson(lesson) {
+function initCodeLesson(lesson) {
   gridRow = lesson.start_row;
   gridCol = lesson.start_col;
   solutionRow = lesson.solution_row;
@@ -82,10 +82,30 @@ function loadBirdGraphics() {
 }
 
 function ready() {
+  if ($('#music-lessons-page')[0] !== undefined) {
+    initMusicLesson(getMusicLesson());
+}
+
   if ($('#code_lessons_page')[0] !== undefined) {
-    var lesson = getLesson();
-    init_code_lesson(lesson);
+    initCodeLesson(getCodeLesson());
   }
+}
+
+function getUser() {
+  var userID = $('.user-id').eq(0).data().id;
+  var user = $.ajax({
+    url: ('/users/' + usersID),
+    method: 'get',
+    dataType: 'json',
+    async: false
+  });
+  return user.responseJSON;
+}
+
+function upScore(upPoints){
+  var user = getUser();
+  user.score += upPoints;
+  // need to hit database here
 }
 
 $(document).ready(ready);

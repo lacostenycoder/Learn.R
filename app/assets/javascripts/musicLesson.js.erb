@@ -1,5 +1,5 @@
-$(document).ready(function(){
-  // set library to look up key samples
+function initMusicLesson(musicLessonObj) {
+
   var keyLookup = {
     90: "c2",
     83: "c-2",
@@ -28,7 +28,7 @@ $(document).ready(function(){
     73: "c5"
   }
 
-  var lessonSeq = "90, 88, 67, 86, 66, 78, 77, 81"; // this will come from database
+  var lessonSeq = musicLessonObj.solution_key_pattern; // this will come from database
   var lessonText = "Here is a C major scale. Can you play it?"
   var userInput = ""; //initialize empty strings for functions
   var keyCheck;
@@ -72,8 +72,8 @@ $(document).ready(function(){
 
   function playKey(keyId){
     $('.player').empty();
-    var fileName = keyId+'.mp3';
-    var audioTag = $('<audio src=samples/' + keyId + '.mp3></audio>');
+    //This might not work in produciton
+    var audioTag = $('<audio src="/assets/samples/' + keyId + '.mp3"></audio>');
     audioTag.appendTo('.player');
     $('audio').eq(0).trigger('play');
   }
@@ -106,7 +106,18 @@ $(document).ready(function(){
     if (userInput.indexOf(lessonSeq) > -1) {
       gameWon = true;
       alert('You won!');
+      upScore(musicLessonObj.points);
     }
   }
+} //End Music Lesson
 
-});
+function getMusicLesson() {
+  var lessonID = $('.music-lesson-id').eq(0).data().id;
+  var lesson = $.ajax({
+    url: ('/music_lessons/' + lessonID),
+    method: 'get',
+    dataType: 'json',
+    async: false
+  });
+  return lesson.responseJSON;
+}
