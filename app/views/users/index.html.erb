@@ -1,5 +1,9 @@
+<h1>Leaderboard</h1>
 <% @users.each do |user| %>
- <p><%= user.name %></p>
- <p><%= user.score %></p>
-
+<table>
+  <tr>
+    <td><strong><%= user.username %>:</strong></td>
+    <td><strong><%= user.score %></strong></td>
+  </tr>
+</table>
 <% end %>
