@@ -23,18 +23,18 @@ var gridRow, gridCol;
 var solutionRow, solutionCol;
 var YGRIDUNIT = 100;
 var XGRIDUNIT = 100;
-var grid1 = [[0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0]];
-var grid2 = [[0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0],
-             [0, 0, 1, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0]];
+var MAPSIZE = 6;
+var map = [];
+
+function initMap(lesson) {
+  var mapCode = lesson.map_code.split(",");
+  for (var i = 0; i < MAPSIZE; i++) {
+    map[i] = [];
+    for (var j = 0; j < MAPSIZE; j++) {
+      map[i][j] = Number(mapCode.shift());
+    };
+  };
+}
 
 function getCodeLesson() {
   lessonID = $('.lesson-id').eq(0).data().id;
@@ -48,6 +48,7 @@ function getCodeLesson() {
 }
 
 function initCodeLesson(lesson) {
+  initMap(lesson);
   gridRow = lesson.start_row;
   gridCol = lesson.start_col;
   solutionRow = lesson.solution_row;
@@ -56,8 +57,8 @@ function initCodeLesson(lesson) {
   birdImage.src = "<%= asset_path 'bird.png' %>";
   birdImage.name = 'bird';
 
-  backgroundImage.src = "<%= asset_path 'grid2.png' %>";
-  // backgroundImage.src = "/assets/"+lesson.img;
+  // THIS IS THE BAD PLACE
+  backgroundImage.src = "/assets/" + lesson.img;
   backgroundImage.name = 'background';
   backgroundImage.onload = loadGridGraphics;
   birdImage.onload = setTimeout(loadBirdGraphics, 100);
@@ -81,15 +82,6 @@ function loadBirdGraphics() {
   stage.update();
 }
 
-function ready() {
-  if ($('#music-lessons-page')[0] !== undefined) {
-    initMusicLesson(getMusicLesson());
-  }
-  if ($('#code_lessons_page')[0] !== undefined) {
-    initCodeLesson(getCodeLesson());
-  }
-}
-
 function getUser() {
   var userID = $('.user-id').eq(0).data().id;
   var user = $.ajax({
@@ -101,11 +93,14 @@ function getUser() {
   return user.responseJSON;
 }
 
-// function upScore(upPoints){
-//   var user = getUser();
-//   user.score += upPoints;
-//   // need to hit database here
-// }
+function ready() {
+  if ($('#music-lessons-page')[0] !== undefined) {
+    initMusicLesson(getMusicLesson());
+  }
+  if ($('#code_lessons_page')[0] !== undefined) {
+    initCodeLesson(getCodeLesson());
+  }
+}
 
 $(document).ready(ready);
 $(document).on('page:load', ready);

@@ -4,6 +4,7 @@ class CreateCodeLessons < ActiveRecord::Migration
       t.integer :points
       t.integer :level
       t.string :img
+      t.text :map_code
       t.text :lesson_text
       t.text :question_text
       t.integer :start_row
