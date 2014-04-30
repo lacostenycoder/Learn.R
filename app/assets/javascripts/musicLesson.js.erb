@@ -28,6 +28,7 @@ function initMusicLesson(musicLessonObj) {
     73: "c5"
   }
 
+  var musicLessonID = musicLessonObj.id;
   var lessonSeq = musicLessonObj.solution_key_pattern; // this will come from database
   var lessonText = "Here is a C major scale. Can you play it?"
   var userInput = ""; //initialize empty strings for functions
@@ -105,10 +106,14 @@ function initMusicLesson(musicLessonObj) {
   function checkAnswer(userInput){
     if (userInput.indexOf(lessonSeq) > -1) {
       gameWon = true;
-      alert('You won!');
-      upScore(musicLessonObj.points);
+      //alert('You won!');
+      $.ajax({
+        url: ('/music_lessons/' + musicLessonID + '/update-win'),
+        method: 'post'
+      });
     }
   }
+
 } //End Music Lesson
 
 function getMusicLesson() {

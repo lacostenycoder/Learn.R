@@ -101,11 +101,11 @@ function getUser() {
   return user.responseJSON;
 }
 
-function upScore(upPoints){
-  var user = getUser();
-  user.score += upPoints;
-  // need to hit database here
-}
+// function upScore(upPoints){
+//   var user = getUser();
+//   user.score += upPoints;
+//   // need to hit database here
+// }
 
 $(document).ready(ready);
 $(document).on('page:load', ready);

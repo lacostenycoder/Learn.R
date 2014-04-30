@@ -1,0 +1,4 @@
+$('#keyboard-container').prepend("<div class='win-message'><p>Nice Job!</p><a href='/code_lessons/<%= @next_lesson.id %>'>Next Lesson</a></div>");
+$('#total-score').fadeOut(function(){
+  $(this).text(<%= current_user.score %>).fadeIn();
+});
