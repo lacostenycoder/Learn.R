@@ -139,7 +139,8 @@ User.create(email: "a@ga.co",
             name: "Ash Kamel",
             username: "akamel",
             password: "abc12345",
-            password_confirmation: "abc12345")
+            password_confirmation: "abc12345",
+            admin: true)
 
 User.create(email: "j@ga.co",
             name: "Jesse Sessler",
