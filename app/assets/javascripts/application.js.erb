@@ -60,13 +60,13 @@ function initCodeLesson(lesson) {
   // backgroundImage.src = "/assets/"+lesson.img;
   backgroundImage.name = 'background';
   backgroundImage.onload = loadGridGraphics;
+  birdImage.onload = setTimeout(loadBirdGraphics, 100);
+  stage.update();
 }
 
 function loadGridGraphics() {
   background = new createjs.Bitmap(backgroundImage);
   stage.addChild(background);
-  setTimeout(stage.update(), 50);
-  loadBirdGraphics();
   stage.update();
 }
 
