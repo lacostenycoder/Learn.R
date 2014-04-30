@@ -54,8 +54,6 @@ function initCodeLesson(lesson) {
   solutionCol = lesson.solution_col;
   stage = new createjs.Stage(document.getElementById("lessoncanvas"));
   birdImage.src = "<%= asset_path 'bird.png' %>";
-  console.log('made it to asset path');
-  console.log("<%= asset_path 'bird.png' %>");
   birdImage.name = 'bird';
 
   backgroundImage.src = "<%= asset_path 'grid1.png' %>";

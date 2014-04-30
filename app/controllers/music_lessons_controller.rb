@@ -15,7 +15,8 @@ class MusicLessonsController < ApplicationController
       current_user.score += lesson.points
       current_user.save
     end
-    @next_lesson = MusicLesson.find_by(global_level: lesson.global_level + 1)
+    next_lesson = MusicLesson.find_by(global_level: lesson.global_level + 1)
+    @next_lesson_id = next_lesson.nil? ? -1 : next_lesson.id
   end
 
 end
