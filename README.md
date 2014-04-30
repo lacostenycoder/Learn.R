@@ -28,6 +28,9 @@ https://trello.com/b/cyHEYK2C/learn-r
 
 ##Team members
 Jesse Sessler
+
 Ash Kamel
+
 Lance Jordan
+
 David Kim
