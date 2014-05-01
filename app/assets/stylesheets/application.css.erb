@@ -14,6 +14,7 @@
 
  #main_container {
   padding: 0 5px;
+  font-family: 'Open Sans', sans-serif;
  }
 
  #logo {
@@ -32,6 +33,7 @@
   background: #088AFE url(<%= image_path('banner_100.png') %>) right no-repeat;
   height: 100px;
   overflow: hidden;
+  font-family: 'Open Sans', sans-serif;
  }
 
  #header ul li {
@@ -65,8 +67,72 @@
   padding: 10px;
 }
 
+#total-score {
+  font-weight: bolder;
+}
+
+#user_sidebar {
+  background-color: pink;
+  font-size: 18px;
+  padding: 10px;
+  float: left;
+  border-top: 50px;
+  width: 175px;
+}
+
+#lesson_box {
+  padding: 10px 10px 10px 20px;
+  background-color: cyan;
+  border: 1px;
+  display: inline-block;
+  text-align: left;
+  line-height: 20px
+}
+
+#lesson_box h2 {
+  font-weight: bolder;
+  font-size: 24px;
+  line-height: 32px;
+  text-decoration: underline;
+  padding: 10px 0 0 0;
+}
+
+#lesson_box h3 {
+  font-weight: bolder;
+  font-size: 18px;
+  line-height: 32px;
+  padding: 10px 0 0 0
+}
+
+a {
+  text-decoration: none;
+  color: blue;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:visited {
+  color: purple;
+}
+
+.incomplete {
+
+}
+.completed {
+  text-decoration: line-through;
+}
+
+
 .field {
   margin: 0 auto;
   padding: 10px;
   width: 700px;
+}
+
+.one-edge-shadow {
+  -webkit-box-shadow: 0 8px 6px -6px gray;
+     -moz-box-shadow: 0 8px 6px -6px gray;
+          box-shadow: 0 8px 6px -6px gray;
 }

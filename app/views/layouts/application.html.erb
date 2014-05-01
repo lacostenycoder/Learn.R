@@ -7,9 +7,10 @@
     <%= javascript_include_tag "http://code.createjs.com/createjs-2013.12.12.min.js" %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    "application", "http://fonts.googleapis.com/css?family=Open+Sans" %>
   </head>
   <body>
-    <div id="header">
+    <div id="header" class="one-edge-shadow">
       <%= image_tag('logo.png', id: 'logo') %>
         <div id="nav">
           <ul>
