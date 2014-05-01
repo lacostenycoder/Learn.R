@@ -66,11 +66,6 @@ function initMusicLesson(musicLessonObj) {
   var gameWon = false;
 
   // set event listeners for mouse and key presses
-  $('.key').click(function() {
-    var playKeyId = $(this).attr('id');
-    playKey(playKeyId);
-    keyDown(event);
-  });
 
   $('#lesson').click(function(){
     startLesson();
@@ -90,7 +85,7 @@ function initMusicLesson(musicLessonObj) {
     console.log(keyHeld[keyToPlay]);
     if (!keyHeld[keyToPlay]) {
       playKey(keyToPlay);
-      $("#"+keyToPlay ).toggleClass("keyhover");
+      $("#"+keyToPlay ).toggleClass("keypress");
       if (userInput.length > lessonSeq.length){
         userInput = "";
       }
@@ -108,7 +103,7 @@ function initMusicLesson(musicLessonObj) {
     var play = $('#'+keyToPlay)
     //setTimeout(function() { play.find('audio').remove(); }, 500);
     //play.find
-    $('.key').removeClass('keyhover');
+    $('.key').removeClass('keypress');
     if(!gameWon){
     checkAnswer(userInput);
     } else {
@@ -118,9 +113,9 @@ function initMusicLesson(musicLessonObj) {
   }
 
   function playLesson(keyCheck){
-    $("#"+keyLookup[keyCheck] ).toggleClass("keyhover");
+    $("#"+keyLookup[keyCheck] ).toggleClass("keypress");
     playKey(keyLookup[keyCheck]);
-    $('.key').removeClass('keyhover');
+    $('.key').removeClass('keypress');
   }
 
   function playKey(keyId){
@@ -155,10 +150,10 @@ function initMusicLesson(musicLessonObj) {
     var counter = 0;
     var i = setInterval(function(){
       if (counter >= 0) {
-        $('.key').removeClass('keyhover');
+        $('.key').removeClass('keypress');
         var note = notes[counter];
         var keyCode = keyLookup[note];
-        $("div#"+keyCode).addClass("keyhover");
+        $("div#"+keyCode).addClass("keypress");
         playLessonKey(keyCode);
       }
       counter ++;
