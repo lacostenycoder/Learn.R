@@ -28,6 +28,35 @@ function initMusicLesson(musicLessonObj) {
     73: "c5"
   }
 
+  var keyHeld = {
+    "c2": false,
+    "c-2": false,
+    "d2": false,
+    "d-2": false,
+    "e2": false,
+    "f2": false,
+    "f-2": false,
+    "g2": false,
+    "g-2": false,
+    "a3": false,
+    "a-3": false,
+    "b3": false,
+    "c3": false,
+    "c-3": false,
+    "d3": false,
+    "d-3": false,
+    "e3": false,
+    "f3": false,
+    "f-3": false,
+    "g3": false,
+    "g-3": false,
+    "a4": false,
+    "a-4": false,
+    "b4": false,
+    "c5": false
+  }
+
+
   var musicLessonID = musicLessonObj.id;
   var lessonSeq = musicLessonObj.solution_key_pattern; // this will come from database
   var lessonText = "Here is a C major scale. Can you play it?"
@@ -58,16 +87,24 @@ function initMusicLesson(musicLessonObj) {
   function keyDown( event ){
     keyCheck = event.which;
     keyToPlay = keyLookup[keyCheck];
-    $("#"+keyToPlay ).toggleClass("keyhover");
-    playKey(keyToPlay);
-    if (userInput.length > lessonSeq.length){
-      userInput = "";
+    console.log(keyHeld[keyToPlay]);
+    if (!keyHeld[keyToPlay]) {
+      playKey(keyToPlay);
+      $("#"+keyToPlay ).toggleClass("keyhover");
+      if (userInput.length > lessonSeq.length){
+        userInput = "";
+      }
+      userInput += (keyCheck + ", ").toString();
+      console.log(userInput);
+      keyHeld[keyToPlay] = true;
     }
-    userInput += (keyCheck + ", ").toString();
-    console.log(userInput);
   }
 
   function keyUp( event ) {
+    keyToRelease = keyLookup[event.which];
+    console.log(keyHeld[keyToRelease]);
+    keyHeld[keyToRelease] = false;
+    console.log(keyHeld[keyToRelease]);
     var play = $('#'+keyToPlay)
     //setTimeout(function() { play.find('audio').remove(); }, 500);
     //play.find
@@ -87,12 +124,15 @@ function initMusicLesson(musicLessonObj) {
   }
 
   function playKey(keyId){
-    var thisKey = $('#'+keyToPlay);
-    if (thisKey.length > 0) {
-      thisKey.find('audio').remove();
-      thisKey.append('<audio src="/assets/samples/' + keyId + '.mp3"></audio>');
+    console.log('in playkey');
+    if (!keyHeld[keyId]) {
+      var thisKey = $('#'+keyToPlay);
+      if (thisKey.length > 0) {
+        thisKey.find('audio').remove();
+        thisKey.append('<audio src="/assets/samples/' + keyId + '.mp3"></audio>');
+      }
+        thisKey.find('audio').trigger('play');
     }
-      thisKey.find('audio').trigger('play');
   }
 
   function playLessonKey(keyId){
