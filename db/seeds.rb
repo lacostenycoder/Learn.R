@@ -42,7 +42,7 @@ MusicLesson.create(
 CodeLesson.create(
                   title: "It's Alive!",
                   category: "Fundamentals",
-                  lesson_text: "Hey there! I see you stumbled upon our secret little hideaway.  I have this MVC here that isnt working.  Do you think you could help me get him going?",
+                  lesson_text: "Hey there! I see you stumbled upon our secret little hideaway.  I have this MVC, a Mechanical Vehicular Compter, here that isn't working.  Do you think you could help me get him going?",
                   question_text: "Type in 'moveForward();' to turn the MVC on and move forward.",
                   img: "grid1.png",
                   map_code: "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -59,7 +59,7 @@ CodeLesson.create(
                   title: "Its Alive!",
                   category: "Fundamentals",
                   lesson_text: "Excellent work! you got our MVC working!  Now we need to get him accross the room to test his limits",
-                  question_text: "How can we get our MVC to the corner of the room at coordinates ",
+                  question_text: "How can we get our MVC to the corner of the three steps forward ",
                   img: "grid1.png",
                   map_code: "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
                   level: 2,
@@ -73,8 +73,8 @@ CodeLesson.create(
 CodeLesson.create(
                   title: "Gettin Funky",
                   category: "Fundamentals",
-                  lesson_text: "Now that our MVC is in the corner lets see what he can do",
-                  question_text: "Turn our robot so that he looks like he's on his head and take him to the spot above him, hint(use turnLeft();)",
+                  lesson_text: "Looks like our MVC is stuck in the hay!",
+                  question_text: "Turn our robot so that he looks like he's on his back and take him to the spot above him, hint(use turnLeft();)",
                   img: "grid1.png",
                   map_code: "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
                   level: 3,
@@ -105,7 +105,7 @@ CodeLesson.create(
                   category: "Gem Hunting",
                   lesson_text: "After a long arduous journey through the vast universe you we have landed on this mysterious foreign planet.  ..... Hey, I think I see something in the distance go check it out.",
                   question_text: "Find a way to get our MVC to that object using the commands we learned",
-                  img: "grid2.png",
+                  img: "grid2-1.png",
                   map_code: "0,1,0,0,0,0,0,1,0,1,1,0,0,0,0,1,1,0,0,0,1,0,0,0,1,1,1,0,1,1,0,0,0,0,1,1",
                   level: 1,
                   global_level: 5,
@@ -113,21 +113,21 @@ CodeLesson.create(
                   start_row: 0,
                   start_col: 0,
                   solution_row: 1,
-                  solution_col: 3)
+                  solution_col: 2)
 ##Code Lessons - Category Gem Hunting - Lesson 2
 CodeLesson.create(
                   title: "Stacking Gems",
                   category: "Gem Hunting",
                   lesson_text: "Wow! Look at this beautiful Ruby Gem, I wonder what it does.  Hmm, it looks like this Gem is part of a set.  I wonder if there are any other gems around?  Take a look.",
                   question_text: "Find more gems using the tools you have found",
-                  img: "grid2.png",
+                  img: "grid2-2.png",
                   map_code: "0,1,0,0,0,0,0,1,0,1,1,0,0,0,0,1,1,0,0,0,1,0,0,0,1,1,1,0,1,1,0,0,0,0,1,1",
                   level: 2,
                   global_level: 6,
                   points: 200,
                   start_row: 1,
-                  start_col: 3,
-                  solution_row: 4,
+                  start_col: 2,
+                  solution_row: 3,
                   solution_col: 4)
 ##Code Lessons - Category Gem Hunting - Lesson 3
 CodeLesson.create(
@@ -135,22 +135,22 @@ CodeLesson.create(
                   category: "Gem Hunting",
                   lesson_text: "Hmm these gems seem magical, I feel like we are getting more power.  I wonder what one more gem would feel like.",
                   question_text: "Keep searching for those gems",
-                  img: "grid2.png",
+                  img: "grid2-3.png",
                   map_code: "0,1,0,0,0,0,0,1,0,1,1,0,0,0,0,1,1,0,0,0,1,0,0,0,1,1,1,0,1,1,0,0,0,0,1,1",
                   level: 3,
                   global_level: 7,
                   points: 300,
                   start_row: 3,
                   start_col: 4,
-                  solution_row: 0,
-                  solution_col: 5)
+                  solution_row: 5,
+                  solution_col: 0)
 ##Code Lessons - Category Parameters - Finale
 CodeLesson.create(
                   title: "Escape(planet)!",
                   category: "Parameters",
                   lesson_text: "Wow this collection is beautiful.... when we combine it we now have new powers!  ....... Ahhh! Whats that rumble?  ..... QUICK! run you need to get off this planet quick!",
                   question_text: "Use your new powers to escape and get home, Power: ' function(number)' .",
-                  img: "grid2.png",
+                  img: "grid2-3.png",
                   map_code: "0,1,0,0,0,0,0,1,0,1,1,0,0,0,0,1,1,0,0,0,1,0,0,0,1,1,1,0,1,1,0,0,0,0,1,1",
                   level: 1,
                   global_level: 8,
