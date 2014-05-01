@@ -65,10 +65,12 @@ function initMusicLesson(musicLessonObj) {
   var keyToPlay;
   var gameWon = false;
   var audioSourcePrefix = '<audio src="/assets/grand/';
+  var lessonMode = false;
 
   // set event listeners for mouse and key presses
 
   $('#lesson').click(function(){
+    lessonMode = true;
     startLesson();
   });
 
@@ -83,44 +85,43 @@ function initMusicLesson(musicLessonObj) {
   function keyDown( event ){
     keyCheck = event.which;
     keyToPlay = keyLookup[keyCheck];
-    console.log(keyHeld[keyToPlay]);
     if (!keyHeld[keyToPlay]) {
       playKey(keyToPlay);
       $("#"+keyToPlay ).toggleClass("keypress");
-      if (userInput.length > lessonSeq.length){
+      if (userInput.length > 100){
+        alert('Sorry, try again!');
         userInput = "";
       }
-      userInput += (keyCheck + ", ").toString();
-      console.log(userInput);
+      if (lessonMode) {
+        userInput += (keyCheck + ", ").toString();
+        console.log(userInput);
+      }
       keyHeld[keyToPlay] = true;
     }
   }
 
   function keyUp( event ) {
     keyToRelease = keyLookup[event.which];
-    console.log(keyHeld[keyToRelease]);
     keyHeld[keyToRelease] = false;
-    console.log(keyHeld[keyToRelease]);
     var play = $('#'+keyToPlay)
-    //setTimeout(function() { play.find('audio').remove(); }, 500);
-    //play.find
     $('.key').removeClass('keypress');
     if(!gameWon){
-    checkAnswer(userInput);
+      checkAnswer(userInput);
     } else {
-    userInput = "";
-    gameWon = false;
+      userInput = "";
+      gameWon = false;
     }
   }
 
   function playLesson(keyCheck){
-    $("#"+keyLookup[keyCheck] ).toggleClass("keypress");
-    playKey(keyLookup[keyCheck]);
-    $('.key').removeClass('keypress');
+    if (lessonMode) {
+      $("#"+keyLookup[keyCheck] ).toggleClass("keypress");
+      playLessonKey(keyLookup[keyCheck]);
+      $('.key').removeClass('keypress');
+    }
   }
 
   function playKey(keyId){
-    console.log('in playkey');
     if (!keyHeld[keyId]) {
       var thisKey = $('#'+keyToPlay);
       if (thisKey.length > 0) {
@@ -132,15 +133,16 @@ function initMusicLesson(musicLessonObj) {
   }
 
   function playLessonKey(keyId){
-   $('.player').empty();
+   $('.lesson-player').empty();
     //This might not work in produciton
     var audioTag = $(audioSourcePrefix + keyId + '.mp3"></audio>');
-    audioTag.appendTo('.player');
-    $('audio').eq(0).trigger('play');
+    audioTag.appendTo('.lesson-player');
+    $('.lesson-player audio').eq(0).trigger('play');
   }
 
   function startLesson(){
-    $('.lesson-player').empty(); // clear for no dupes.
+    $('.player').empty();
+    $('.lesson-player').empty();
     $('.lesson-player').append(lessonText);
     playSequence(lessonSeq);
   }
@@ -165,8 +167,9 @@ function initMusicLesson(musicLessonObj) {
   }
 
   function checkAnswer(userInput){
-    if (userInput.indexOf(lessonSeq) > -1) {
+    if (userInput.indexOf(lessonSeq) > -1 && lessonMode) {
       gameWon = true;
+      lessonMode = false;
       //alert('You won!');
       $.ajax({
         url: ('/music_lessons/' + musicLessonID + '/update-win'),

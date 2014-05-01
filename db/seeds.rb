@@ -3,40 +3,66 @@ CodeLesson.destroy_all
 User.destroy_all
 
 MusicLesson.create(
-                   lesson_text: "This is a test okay",
-                   question_text: "Will this test work?",
+                   lesson_text: 'The foundation of Music in our culture is based on what is called the Major Scale. The notes of the "Natural Scale" or C scale are constructed using the white keys only. There are 7 notes in a Major Scale.  In the key of C, they start on C and go up from left to right, so ( C, D, E, F, G, A, B ) and when we get to the next C or the eight note it repeats again at the next "Octave" and starts again at C. C2 and C3 have the similar character as you can hear by playing them. For this lesson listen to the notes ascending up the scale and play them back in the same order. Hit "Start" to begin.',
+                   question_text: "See if you can play the C Major Scale starting on C2 and ending on C3!",
                    img: "http://placesheen.com/200/300 ",
                    level: 1,
-                   points: 20,
-                   solution_key_pattern: "90, 88, 67",
+                   points: 100,
+                   solution_key_pattern: '90, 88, 67, 86, 66, 78, 77, 81',
                    category: "Scales",
-                   title: "Major Scale",
+                   title: "C Major Scale",
                    global_level: 1
                    )
 
 MusicLesson.create(
-                   lesson_text: "You will learn Rhythm fool",
-                   question_text: "How will you master rhythm?",
-                   img: "http://placesheen.com/400/400 ",
-                   level: 1,
-                   points: 40,
-                   solution_key_pattern: "77, 99, 22",
-                   category: "Rhythm",
-                   title: "Poop",
+                   lesson_text: 'The Minor Scale is based on the same notes as the Major Scale but instead of starting on C or the 1st note, it starts on A (the 6th note of C Major Scale) . So it would be from low to high, (A, B, C, D, E, F, G, A). Because they use the exact same notes, A minor is considered the "relative minor" of C major.The Minor scale is felt to be a bit sadder sounding than Major, which sounds happy and uplifting. The differnt "modes" are used to express different moods.  Music is is a language!',
+                   question_text: 'See if you can play the A Minor Scale starting on A2 and ending on A3.',
+                   img: "http://placesheen.com/200/300",
+                   level: 2,
+                   points: 100,
+                   solution_key_pattern: "78, 77, 81, 87, 69, 82, 84, 89",
+                   category: "Scales",
+                   title: "A Minor Scale",
                    global_level: 2
                    )
 
 MusicLesson.create(
-                   lesson_text: "Blah blah",
-                   question_text: "Will this test work? again?",
-                   img: "http://placesheen.com/200/300 ",
-                   level: 2,
-                   points: 50,
-                   solution_key_pattern: "22, 33, 44",
+                   lesson_text: 'What are the black keys for? Each note on the keyboard steps up one note or "interval", at a time from low to high, left to right. To get from C to D you must go up two keys or two "half steps". Because we use the Major Scale as our main system, the white keys in the natural C scale follow a step pattern where the black keys are skipped.  So if we count in half steps, there are 11 (12 with the octive) notes in the total octave range. The C major scale is constructed using the following pattern of steps: (Whole, Whole, Half, Whole, Whole, Whole, Half).  Notice that there are no black keys between E and F and between B and C.  This gives us the formula for contructing a Major Scale based on this pattern.',
+                   question_text: 'See if you can play a G Major scale starting on G2 and ending on G3.  Use the step pattern of (W,W,h,W,W,W,h). Hint: in order to construct this scale you will need to use one black key to get the correct pattern.',
+                   img: "http://placesheen.com/200/300",
+                   level: 1,
+                   points: 150,
+                   solution_key_pattern: "66, 78, 77, 81, 87, 69, 53, 84",
                    category: "Scales",
-                   title: "Minor Scale",
+                   title: "Intervals",
                    global_level: 3
                    )
+
+
+MusicLesson.create(
+                   lesson_text: 'Like the Major Scale, it\'s relative Minor Scale has a pattern on which it is constructed. Notice how the A Minor scale also uses no black keys. So the pattern to construct it is: (W,h,W,W,h,W,W). The black keys are called "sharp" keys and are on half step higher in pitch than the corresponding natural key of the same name.',
+                   question_text: 'Play an E Minor scale starting on E2, using the correct pattern.',
+                   img: "http://placesheen.com/200/300",
+                   level: 1,
+                   points: 150,
+                   solution_key_pattern: "67, 71, 66, 78, 77, 81, 87, 69",
+                   category: "Scales",
+                   title: "Intervals II",
+                   global_level: 4
+                   )
+
+MusicLesson.create(
+                   lesson_text: 'Chords are defined as a group of three or more notes combined and played simultaneously. A Major chord is composed of the 1st(Tonic), 3rd(Mediant), and 5th(Dominant) notes of their respective Major Scale(key). So a C Major Chord is contructed from (C, E, G)',
+                   question_text: 'Using this construct formula, play a G Major Chord with G2 as the first note. Hold them together to play a chord',
+                   img: "http://placesheen.com/200/300",
+                   level: 2,
+                   points: 100,
+                   solution_key_pattern: "66, 77, 87",
+                   category: "Chords",
+                   title: "Major Triad",
+                   global_level: 5
+                   )
+
 
 CodeLesson.create(
                   title: "It's Alive!",
