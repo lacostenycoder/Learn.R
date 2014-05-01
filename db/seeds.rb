@@ -70,7 +70,7 @@ MusicLesson.create(
                    solution_key_pattern: "66, 77, 87",
                    category: "Chords",
                    title: "Minor Triad",
-                   global_level: 5
+                   global_level: 6
                    )
 
 ##Code Lessons - Category Fundamentals - Lesson 1
