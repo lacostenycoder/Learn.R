@@ -3,15 +3,15 @@
 var orientationChanger = {east:  'north',
                           north: 'west',
                           west:  'south',
-                          south: 'east'}
+                          south: 'east'};
 
 var directionPicker = {east:  moveImageOneUnitEast,
                        west:  moveImageOneUnitWest,
                        north: moveImageOneUnitNorth,
-                       south: moveImageOneUnitSouth}
+                       south: moveImageOneUnitSouth};
 
-var commandConverter = {'turnLeft();': turnLeft,
-                        'moveForward();': moveForward};
+var commandConverter = {'turnLeft': turnLeft,
+                        'moveForward': moveForward};
 
 function throwError() {
   $('.errors').empty();
@@ -48,8 +48,6 @@ function turnLeft(image) {
 function moveForward(image) {
   directionPicker[orientation](image);
 }
-
-// Grid does not change dynamically yet
 
 function moveImageOneUnitEast(image) {
   if (image.x + XGRIDUNIT < stage.canvas.width) {
@@ -96,5 +94,19 @@ function checkWin() {
   }
 }
 
-var commands = $('textarea').val().split("\n");
-runCommands(commands);
+function parseCommands(text) {
+  var lines = text.split(";");
+  var masterCommandList = [];
+  for (var i = 0; i < lines.length - 1; i++) {
+    var command = lines[i].trim();
+    var commandString = command.split("(")[0];
+    var argString = command.split("(")[1].split(")")[0];
+    argString = argString === "" ? 1 : argString;
+    for (var j = 0; j < Number(argString); j++) {
+      masterCommandList.push(commandString);
+    }
+  }
+  runCommands(masterCommandList);
+}
+
+parseCommands($('textarea').val());
