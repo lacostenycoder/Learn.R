@@ -23,7 +23,7 @@ function runCommands(commands) {
   var i = setInterval(function(){
     if (counter >= 0) {
       if (commandConverter[commands[counter]]) {
-        commandConverter[commands[counter]](bird);
+        commandConverter[commands[counter]](robot);
         stage.update();
       } else {
         throwError();
