@@ -144,7 +144,7 @@ CodeLesson.create(
                   start_col: 4,
                   solution_row: 0,
                   solution_col: 5)
-##Code Lessons - Category Destroy - Finale
+##Code Lessons - Category Parameters - Finale
 CodeLesson.create(
                   title: "Escape(planet)!",
                   category: "Parameters",
@@ -172,8 +172,7 @@ User.create(email: "jesse.sessler@gmail.com",
             name: "Jesse Sessler",
             username: "jsessler",
             password: "abc12345",
-            password_confirmation: "abc12345",
-            admin: true)
+            password_confirmation: "abc12345")
 
 User.create(email: "d@ga.com",
             name: "David Kim",
