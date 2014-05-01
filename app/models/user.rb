@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   # Custom Validations
   validates(:name, :username, presence: true)
   validates(:username, uniqueness: true)
+  validates(:avatar, presence: true)
 
   has_and_belongs_to_many :code_lessons
   has_and_belongs_to_many :music_lessons
