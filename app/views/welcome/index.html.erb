@@ -1,8 +1,9 @@
-<h1>Welcome to LearnR</h1>
-
-<% if user_signed_in? %>
-  <p><%= link_to 'View profile', current_user %></p>
-<% end %>
-<p><%= link_to 'Sign in', new_user_session_path %></p>
-<p><%= link_to 'Sign up', new_user_registration_path %></p>
-
+<div id="welcome_container">
+  <div id="welcome_box">
+    <h1>Welcome to LearnR</h1>
+    <div id="inner_welcome_box">
+      <%= link_to 'Sign in', new_user_session_path %>
+      <%= link_to 'Sign up', new_user_registration_path %>
+    </div>
+  </div>
+</div>
