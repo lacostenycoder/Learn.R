@@ -1,20 +1,25 @@
-<h1><%= @user.username %></h1>
-<%= link_to 'Edit Info', edit_user_registration_path %>
+<div id="user_sidebar" class="one-edge-shadow">
+  <h1><%= @user.username %></h1>
+  <%= link_to 'Edit Info', edit_user_registration_path %>
+</div>
 
-<h2>Code Lessons</h2>
-<%= render partial: 'code_lessons/index', locals: {code_lessons: @code_lessons, completed_code_lessons: @completed_code_lessons, next_code_lesson: @next_code_lesson} %>
+<div id="lesson_box" class="one-edge-shadow">
+  <h2>Code Lessons</h2>
+  <%= render partial: 'code_lessons/index', locals: {code_lessons: @code_lessons, completed_code_lessons: @completed_code_lessons, next_code_lesson: @next_code_lesson} %>
 
 
-<h2>Music Lessons</h2>
+  <h2>Music Lessons</h2>
 
-<%= render partial: 'music_lessons/index', locals: { music_lessons: @music_lessons, completed_music_lessons: @completed_music_lessons, next_music_lesson: @next_music_lesson} %>
+  <%= render partial: 'music_lessons/index', locals: { music_lessons: @music_lessons, completed_music_lessons: @completed_music_lessons, next_music_lesson: @next_music_lesson} %>
 
- <%= content_tag(:div, class: "user-id", 'data-id' => @user.id) do %>
+   <%= content_tag(:div, class: "user-id", 'data-id' => @user.id) do %>
+    <% end %>
+</div>
+
+  <% if current_user.try(:admin?) %>
+    <%= link_to "All Music Lessons", music_lessons_path %><br>
+    <%= link_to "Create a new Music Lesson", new_music_lesson_path %><br>
+    <%= link_to "All Code Lessons", code_lessons_path %><br>
+    <%= link_to "Create a new Code Lesson", new_code_lesson_path %>
   <% end %>
 
-<% if current_user.try(:admin?) %>
-  <%= link_to "All Music Lessons", music_lessons_path %><br>
-  <%= link_to "Create a new Music Lesson", new_music_lesson_path %><br>
-  <%= link_to "All Code Lessons", code_lessons_path %><br>
-  <%= link_to "Create a new Code Lesson", new_code_lesson_path %>
-<% end %>
