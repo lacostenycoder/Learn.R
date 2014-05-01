@@ -1,0 +1,9 @@
+<% @music_lessons.each do |music_lesson| %>
+  <p><%= music_lesson.title %>
+  <%= music_lesson.category %>
+  <%= music_lesson.global_level %>
+  <%= link_to music_lesson.title, music_lesson%>
+  <%= link_to "Edit this lesson", edit_music_lesson_path(music_lesson) %>
+  <%= link_to "Delete this lesson", music_lesson, method: :delete, data: { confirm: "Are you sure?" } %>
+</p>
+<% end %>

@@ -1,0 +1,41 @@
+<%= form_for @music_lesson do |f| %>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+  <%= f.label :category %>
+  <%= f.text_field :category %>
+  </div>
+  <div class="field">
+    <%= f.label :img %>
+    <%= f.text_field :img %>
+  </div>
+  <div class="field">
+    <%= f.label :level %>
+    <%= f.number_field :level %>
+  </div>
+  <div class="field">
+    <%= f.label :global_level %>
+    <%= f.number_field :global_level %>
+  </div>
+  <div class="field">
+    <%= f.label :points %>
+    <%= f.number_field :points %>
+  </div>
+  <div class="field">
+    <%= f.label :lesson_text %>
+    <%= f.text_area :lesson_text %>
+  </div>
+  <div class="field">
+    <%= f.label :question_text %>
+    <%= f.text_area :question_text %>
+  </div>
+  <div class="field">
+    <%= f.label :solution_key_pattern %>
+    <%= f.text_field :solution_key_pattern %>
+  </div>
+  <div class="action">
+    <%= f.submit %>
+  </div>
+<% end %>

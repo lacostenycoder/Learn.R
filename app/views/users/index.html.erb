@@ -1,0 +1,10 @@
+<h1>Leaderboard</h1>
+
+<% @sorted_users.each do |user| %>
+<table>
+  <tr>
+    <td><strong><%= user.username %>:</strong></td>
+    <td><strong><%= user.score %></strong></td>
+  </tr>
+</table>
+<% end %>
