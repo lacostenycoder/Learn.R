@@ -133,7 +133,7 @@ CodeLesson.create(
 CodeLesson.create(
                   title: "Complete the Collection",
                   category: "Gem Hunting",
-                  lesson_text: "Hmm these gems seem magical, I feel like we are getting more power.  I wonder what one more gem would feel like.",
+                  lesson_text: "Hmm these gems seem magical, I feel like we are getting more power.  I wonder what one more gem would do?",
                   question_text: "Keep searching for those gems",
                   img: "grid2-3.png",
                   map_code: "0,1,0,0,0,0,0,1,0,1,1,0,0,0,0,1,1,0,0,0,1,0,0,0,1,1,1,0,1,1,0,0,0,0,1,1",
@@ -155,8 +155,8 @@ CodeLesson.create(
                   level: 1,
                   global_level: 8,
                   points: 500,
-                  start_row: 0,
-                  start_col: 5,
+                  start_row: 5,
+                  start_col: 0,
                   solution_row: 0,
                   solution_col: 0)
 
