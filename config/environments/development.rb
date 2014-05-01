@@ -38,6 +38,6 @@ LearnR::Application.configure do
   authentication: "plain",
   enable_starttls_auto: true,
   user_name: "team.alan.kay",
-  password: "ashdavidjesselance99"
+  password: ENV["ALANKAYPASSWORD"]
   }
 end
