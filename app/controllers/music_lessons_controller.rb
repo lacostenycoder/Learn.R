@@ -1,5 +1,6 @@
 class MusicLessonsController < ApplicationController
 
+  before_action :authenticate_user!, only: [:show]
   before_action :require_admin_authentication, only: [:index, :new, :create, :edit, :update, :destroy]
 
   def index
@@ -8,6 +9,11 @@ class MusicLessonsController < ApplicationController
 
   def show
     @lesson = MusicLesson.find(params[:id])
+    # check to make sure user is up to this level
+    user_max_music_lesson_global_level = current_user.music_lessons.pluck(:global_level).max || 0
+    if @lesson.global_level > user_max_music_lesson_global_level + 1
+      redirect_to root_path unless current_user.admin
+    end
      respond_to do |format|
       format.html { }
       format.json { render json: @lesson.to_json }

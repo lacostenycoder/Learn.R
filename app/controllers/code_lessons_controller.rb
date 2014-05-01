@@ -1,5 +1,6 @@
 class CodeLessonsController < ApplicationController
 
+  before_action :authenticate_user!, only: [:show]
   before_action :require_admin_authentication, only: [:index, :new, :create, :edit, :update, :destroy]
 
   def index
@@ -8,6 +9,11 @@ class CodeLessonsController < ApplicationController
 
   def show
     @lesson = CodeLesson.find(params[:id])
+    # check to make sure user is up to this level
+    user_max_code_lesson_global_level = current_user.code_lessons.pluck(:global_level).max || 0
+    if @lesson.global_level > (user_max_code_lesson_global_level + 1)
+      redirect_to root_path unless current_user.admin
+    end
     respond_to do |format|
       format.html { }
       format.js   { }
