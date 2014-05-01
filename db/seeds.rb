@@ -38,8 +38,6 @@ MusicLesson.create(
                    global_level: 3
                    )
 
-<<<<<<< HEAD
-
 MusicLesson.create(
                    lesson_text: 'Like the Major Scale, it\'s relative Minor Scale has a pattern on which it is constructed. Notice how the A Minor scale also uses no black keys. So the pattern to construct it is: (W,h,W,W,h,W,W). The black keys are called "sharp" keys and are on half step higher in pitch than the corresponding natural key of the same name.',
                    question_text: 'Play an E Minor scale starting on E2, using the correct pattern.',
