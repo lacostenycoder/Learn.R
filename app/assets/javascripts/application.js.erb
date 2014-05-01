@@ -16,8 +16,8 @@
 //= require_tree .
 
 var lessonID;
-var stage, bird, background, orientation;
-var birdImage = new Image();
+var stage, robot, background, orientation;
+var robotImage = new Image();
 var backgroundImage = new Image();
 var gridRow, gridCol;
 var solutionRow, solutionCol;
@@ -54,14 +54,14 @@ function initCodeLesson(lesson) {
   solutionRow = lesson.solution_row;
   solutionCol = lesson.solution_col;
   stage = new createjs.Stage(document.getElementById("lessoncanvas"));
-  birdImage.src = "<%= asset_path 'bird.png' %>";
-  birdImage.name = 'bird';
+  robotImage.src = "<%= asset_path 'robot.png' %>";
+  robotImage.name = 'robot';
 
   // THIS IS THE BAD PLACE
   backgroundImage.src = "/assets/" + lesson.img;
   backgroundImage.name = 'background';
   backgroundImage.onload = loadGridGraphics;
-  birdImage.onload = setTimeout(loadBirdGraphics, 100);
+  robotImage.onload = setTimeout(loadRobotGraphics, 100);
   stage.update();
 }
 
@@ -71,14 +71,14 @@ function loadGridGraphics() {
   stage.update();
 }
 
-function loadBirdGraphics() {
-  bird = new createjs.Bitmap(birdImage);
-  bird.regX = bird.image.width/2;
-  bird.regY = bird.image.height/2;
-  bird.x = XGRIDUNIT * gridCol + bird.regX
-  bird.y = YGRIDUNIT * gridRow + bird.regY
+function loadRobotGraphics() {
+  robot = new createjs.Bitmap(robotImage);
+  robot.regX = robot.image.width/2;
+  robot.regY = robot.image.height/2;
+  robot.x = XGRIDUNIT * gridCol + robot.regX
+  robot.y = YGRIDUNIT * gridRow + robot.regY
   orientation = 'east';
-  stage.addChild(bird);
+  stage.addChild(robot);
   stage.update();
 }
 
