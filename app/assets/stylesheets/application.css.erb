@@ -1,0 +1,72 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+ #main_container {
+  padding: 0 5px;
+ }
+
+ #logo {
+  height: 90px;
+ }
+
+ #nav {
+  display: inline-block;
+ }
+
+ #nav img {
+  height: 70px;
+ }
+
+ #header {
+  background: #088AFE url(<%= image_path('banner_100.png') %>) right no-repeat;
+  height: 100px;
+  overflow: hidden;
+ }
+
+ #header ul li {
+  display: inline-block;
+  padding: 10px;
+ }
+
+#welcome_container {
+  text-align: center;
+}
+
+#welcome_box {
+  background: lightgrey;
+  display: inline-block;
+  margin-top: -20px;
+  padding: 50px;
+}
+
+#welcome_box h1 {
+  font-size: 36px;
+  padding: 20px;
+}
+
+#inner_welcome_box {
+  margin: 0 auto;
+  padding: 20px;
+  width: 150px;
+}
+
+#inner_welcome_box a {
+  padding: 10px;
+}
+
+.field {
+  margin: 0 auto;
+  padding: 10px;
+  width: 700px;
+}
