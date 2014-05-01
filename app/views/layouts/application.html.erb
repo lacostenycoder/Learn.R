@@ -15,10 +15,10 @@
         <div id="nav">
           <ul>
             <% if user_signed_in? %>
-              <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
               <li><%= current_user.username %></li>
-              <li><%= link_to 'Account',  current_user %></li>
               <li>Score: <span id='total-score'><%= current_user.score %></span></li>
+              <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
+              <li><%= link_to 'Account',  current_user %></li>
               <li><%= image_tag(current_user.avatar) %></li>
             <% end %>
           </ul>
