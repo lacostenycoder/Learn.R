@@ -15,6 +15,12 @@ class User < ActiveRecord::Base
 
   before_create :initialize_score
 
+  def progress
+    total_course_lessons = MusicLesson.all.size + CodeLesson.all.size
+    total_completed_lessons = self.music_lessons.size + self.code_lessons.size
+    (total_completed_lessons / total_course_lessons.to_f * 100).to_i
+  end
+
   private
 
     def initialize_score

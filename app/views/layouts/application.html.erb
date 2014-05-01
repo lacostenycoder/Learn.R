@@ -13,6 +13,7 @@
       <li><%= link_to_unless_current 'Home', root_path %></li>
       <li><%= link_to 'Leaderboard', users_path %></li>
       <% if user_signed_in? %>
+        <li>Progress: <span id='total-progress'><%= current_user.progress %></span>%</li>
         <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
         <li>
           <h1><%= current_user.username %></h1>
