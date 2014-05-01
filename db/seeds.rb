@@ -164,6 +164,7 @@ CodeLesson.create(
 User.create(email: "a@ga.co",
             name: "Ash Kamel",
             username: "akamel",
+            avatar: "code_wizard_100.png",
             password: "abc12345",
             password_confirmation: "abc12345",
             admin: true)
@@ -171,12 +172,15 @@ User.create(email: "a@ga.co",
 User.create(email: "jesse.sessler@gmail.com",
             name: "Jesse Sessler",
             username: "jsessler",
+            avatar: "code_wizard_100.png",
             password: "abc12345",
-            password_confirmation: "abc12345")
+            password_confirmation: "abc12345",
+            admin: true)
 
 User.create(email: "d@ga.com",
             name: "David Kim",
             username: "dkim",
+            avatar: "code_wizard_100.png",
             password: "abc12345",
             password_confirmation: "abc12345",
             admin: true)
@@ -184,6 +188,7 @@ User.create(email: "d@ga.com",
 User.create(email: "l@ga.com",
             name: "Lance Jordan",
             username: "ljordan",
+            avatar: "code_wizard_100.png",
             password: "abc12345",
             password_confirmation: "abc12345",
             admin: true)
