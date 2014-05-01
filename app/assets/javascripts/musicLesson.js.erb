@@ -64,6 +64,7 @@ function initMusicLesson(musicLessonObj) {
   var keyCheck;
   var keyToPlay;
   var gameWon = false;
+  var audioSourcePrefix = '<audio src="/assets/grand/';
 
   // set event listeners for mouse and key presses
 
@@ -124,7 +125,7 @@ function initMusicLesson(musicLessonObj) {
       var thisKey = $('#'+keyToPlay);
       if (thisKey.length > 0) {
         thisKey.find('audio').remove();
-        thisKey.append('<audio src="/assets/samples/' + keyId + '.mp3"></audio>');
+        thisKey.append(audioSourcePrefix + keyId + '.mp3"></audio>');
       }
         thisKey.find('audio').trigger('play');
     }
@@ -133,7 +134,7 @@ function initMusicLesson(musicLessonObj) {
   function playLessonKey(keyId){
    $('.player').empty();
     //This might not work in produciton
-    var audioTag = $('<audio src="/assets/samples/' + keyId + '.mp3"></audio>');
+    var audioTag = $(audioSourcePrefix + keyId + '.mp3"></audio>');
     audioTag.appendTo('.player');
     $('audio').eq(0).trigger('play');
   }
