@@ -9,11 +9,18 @@ class User < ActiveRecord::Base
   # Custom Validations
   validates(:name, :username, presence: true)
   validates(:username, uniqueness: true)
+  validates(:avatar, presence: true)
 
   has_and_belongs_to_many :code_lessons
   has_and_belongs_to_many :music_lessons
 
   before_create :initialize_score
+
+  def progress
+    total_course_lessons = MusicLesson.all.size + CodeLesson.all.size
+    total_completed_lessons = self.music_lessons.size + self.code_lessons.size
+    (total_completed_lessons / total_course_lessons.to_f * 100).to_i
+  end
 
   private
 

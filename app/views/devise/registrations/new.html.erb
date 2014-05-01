@@ -12,7 +12,19 @@
   <div><%= f.label :username %><br />
   <%= f.text_field :username  %></div>
 
-  <p>Add Avatar Icons here!</p>
+  <div id="avatar">
+    <%= f.label :avatar, image_tag('boy1.jpg') %>
+    <%= f.radio_button :avatar, 'boy1.jpg', checked: 'checked' %>
+
+    <%= f.label :avatar, image_tag('boy2.jpg') %>
+    <%= f.radio_button :avatar, 'boy2.jpg' %>
+
+    <%= f.label :avatar, image_tag('girl1.jpg') %>
+    <%= f.radio_button :avatar, 'girl1.jpg' %>
+
+    <%= f.label :avatar, image_tag('girl2.jpg') %>
+    <%= f.radio_button :avatar, 'girl2.jpg' %>
+  </div>
 
   <div><%= f.label :password %><br />
     <%= f.password_field :password, autocomplete: "off" %></div>

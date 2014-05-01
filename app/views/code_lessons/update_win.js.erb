@@ -1,13 +1,17 @@
-$('.container').prepend("<div class='win-message'><p>Nice Job!</p></div>");
+if ($('.win-message').length < 1) {
+  $('.container').prepend("<div class='win-message'><p>Nice Job!</p></div>");
 
-if (<%= @next_lesson_id %> !== -1) {
-  console.log('top of if');
-  $('.win-message').append("<a href='/code_lessons/<%= @next_lesson_id %>'>Next Lesson</a>");
-} else {
-  console.log('bottom of if');
-  $('.win-message').append("<p>You've completed all lessons! Check back for more in the future!</p>");
+  if (<%= @next_lesson_id %> !== -1) {
+    $('.win-message').append("<a href='/code_lessons/<%= @next_lesson_id %>'>Next Lesson</a>");
+  } else {
+    $('.win-message').append("<p>You've completed all lessons! Check back for more in the future!</p>");
+  }
 }
 
 $('#total-score').fadeOut(function(){
   $(this).text(<%= current_user.score %>).fadeIn();
+});
+
+$('#total-progress').fadeOut(function(){
+  $(this).text(<%= current_user.progress %>).fadeIn();
 });
