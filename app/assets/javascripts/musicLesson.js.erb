@@ -28,6 +28,35 @@ function initMusicLesson(musicLessonObj) {
     73: "c5"
   }
 
+  var keyHeld = {
+    "c2": false,
+    "c-2": false,
+    "d2": false,
+    "d-2": false,
+    "e2": false,
+    "f2": false,
+    "f-2": false,
+    "g2": false,
+    "g-2": false,
+    "a3": false,
+    "a-3": false,
+    "b3": false,
+    "c3": false,
+    "c-3": false,
+    "d3": false,
+    "d-3": false,
+    "e3": false,
+    "f3": false,
+    "f-3": false,
+    "g3": false,
+    "g-3": false,
+    "a4": false,
+    "a-4": false,
+    "b4": false,
+    "c5": false
+  }
+
+
   var musicLessonID = musicLessonObj.id;
   var lessonSeq = musicLessonObj.solution_key_pattern; // this will come from database
   var lessonText = "Here is a C major scale. Can you play it?"
@@ -37,42 +66,72 @@ function initMusicLesson(musicLessonObj) {
   var gameWon = false;
 
   // set event listeners for mouse and key presses
-  $('.key').click(function(){
-    var playKeyId = $(this).attr('id');
-    playKey(playKeyId);
-  });
 
   $('#lesson').click(function(){
     startLesson();
-  })
-
-  $( "body" ).on( "keydown", function( event ) {
-    keyCheck = event.which;
-    keyToPlay = keyLookup[keyCheck];
-    $("#"+keyToPlay ).toggleClass("keyhover");
-    playKey(keyToPlay);
-    userInput += (keyCheck + ", ").toString();
-    console.log(userInput);
   });
 
-  $( "body" ).on( "keyup", function() {
-    $('.key').removeClass('keyhover');
+  $( "body" ).on( "keydown", function( event ) {
+    keyDown(event);
+  });
+
+  $( "body" ).on( "keyup", function( event ) {
+    keyUp(event);
+  });
+
+  function keyDown( event ){
+    keyCheck = event.which;
+    keyToPlay = keyLookup[keyCheck];
+    console.log(keyHeld[keyToPlay]);
+    if (!keyHeld[keyToPlay]) {
+      playKey(keyToPlay);
+      $("#"+keyToPlay ).toggleClass("keypress");
+      if (userInput.length > lessonSeq.length){
+        userInput = "";
+      }
+      userInput += (keyCheck + ", ").toString();
+      console.log(userInput);
+      keyHeld[keyToPlay] = true;
+    }
+  }
+
+  function keyUp( event ) {
+    keyToRelease = keyLookup[event.which];
+    console.log(keyHeld[keyToRelease]);
+    keyHeld[keyToRelease] = false;
+    console.log(keyHeld[keyToRelease]);
+    var play = $('#'+keyToPlay)
+    //setTimeout(function() { play.find('audio').remove(); }, 500);
+    //play.find
+    $('.key').removeClass('keypress');
     if(!gameWon){
     checkAnswer(userInput);
     } else {
     userInput = "";
     gameWon = false;
     }
-  });
+  }
 
   function playLesson(keyCheck){
-    $("#"+keyLookup[keyCheck] ).toggleClass("keyhover");
+    $("#"+keyLookup[keyCheck] ).toggleClass("keypress");
     playKey(keyLookup[keyCheck]);
-    $('.key').removeClass('keyhover');
+    $('.key').removeClass('keypress');
   }
 
   function playKey(keyId){
-    $('.player').empty();
+    console.log('in playkey');
+    if (!keyHeld[keyId]) {
+      var thisKey = $('#'+keyToPlay);
+      if (thisKey.length > 0) {
+        thisKey.find('audio').remove();
+        thisKey.append('<audio src="/assets/samples/' + keyId + '.mp3"></audio>');
+      }
+        thisKey.find('audio').trigger('play');
+    }
+  }
+
+  function playLessonKey(keyId){
+   $('.player').empty();
     //This might not work in produciton
     var audioTag = $('<audio src="/assets/samples/' + keyId + '.mp3"></audio>');
     audioTag.appendTo('.player');
@@ -91,10 +150,11 @@ function initMusicLesson(musicLessonObj) {
     var counter = 0;
     var i = setInterval(function(){
       if (counter >= 0) {
-        $('.key').removeClass('keyhover');
+        $('.key').removeClass('keypress');
         var note = notes[counter];
-         $("#"+keyLookup[note] ).addClass("keyhover");
-        playKey(keyLookup[note]);
+        var keyCode = keyLookup[note];
+        $("div#"+keyCode).addClass("keypress");
+        playLessonKey(keyCode);
       }
       counter ++;
       if (counter > max) {
