@@ -1,12 +1,15 @@
 <div class="container">
-    <p>Progress: <span id='total-progress'><%= current_user.progress %></span>%</p>
-    <h1><%= @lesson.title %></h1>
-    <p>Lesson Topics: <%= @lesson.lesson_text %></p>
-    <p class="points">Available Points: <%= @lesson.points %></p>
+    <div id="code_lesson_text">
+      <h1><%= @lesson.title %></h1>
+      <p><strong>Progress:</strong> <span id='total-progress'><%= current_user.progress %></span>%</p>
+      <p><strong>Lesson Topic</strong>: <%= @lesson.lesson_text %></p>
+      <p class="points"><strong>Available Points:</strong> <%= @lesson.points %></p>
 
-    <p>Instructions: <%= @lesson.question_text %></p>
-    <%= content_tag(:div, class: "lesson-id", 'data-id' => @lesson.id) do %>
+      <p><strong>Instructions:</strong> <%= @lesson.question_text %></p>
+      <%= content_tag(:div, class: "lesson-id", 'data-id' => @lesson.id) do %>
     <% end %>
+  </div>
+
     <div id="code_lessons_page"></div>
 
     <div class="canvas">
