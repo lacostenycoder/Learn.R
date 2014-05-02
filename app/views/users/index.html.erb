@@ -1,10 +1,20 @@
-<h1>Leaderboard</h1>
+<div id="leaderboard">
+<h1>Leaderboard</h1><br><br>
 
-<% @sorted_users.each do |user| %>
 <table>
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>High Score</th>
+    </tr>
+  </thead>
+  <tbody>
+<% @sorted_users.each do |user| %>
   <tr>
     <td><strong><%= user.username %>:</strong></td>
     <td><strong><%= user.score %></strong></td>
   </tr>
-</table>
 <% end %>
+  </tbody>
+</table>
+</div>
