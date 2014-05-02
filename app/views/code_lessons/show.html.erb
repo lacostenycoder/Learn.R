@@ -1,31 +1,30 @@
 <div class="container">
-    <div id="code_lesson_text">
-      <h1><%= @lesson.title %></h1>
-      <p><strong>Progress:</strong> <span id='total-progress'><%= current_user.progress %></span>%</p>
-      <p><strong>Lesson Topic</strong>: <%= @lesson.lesson_text %></p>
-      <p class="points"><strong>Available Points:</strong> <%= @lesson.points %></p>
-
-      <p><strong>Instructions:</strong> <%= @lesson.question_text %></p>
-      <%= content_tag(:div, class: "lesson-id", 'data-id' => @lesson.id) do %>
-    <% end %>
-  </div>
-
-    <div id="code_lessons_page"></div>
-
     <div class="canvas">
       <canvas id="lessoncanvas" height="600" width="600"></canvas>
     </div>
-          <%= form_tag( @lesson, method: :get, remote: true) do |f| %>
+    <div id="code_lesson_text">
+      <p><strong>Progress:</strong> <span id='total-progress'><%= current_user.progress %></span>%</p>
+      <br>
+      <h1><%= @lesson.title %></h1>
 
-          <%= label_tag(:answer, "Enter your answer") %>
-          <%= text_area_tag :answer %>
+      <p><strong>Lesson Topic</strong>: <%= @lesson.lesson_text %></p>
+      <br>
+      <p class="points"><strong>Available Points:</strong> <%= @lesson.points %></p>
+      <br>
+      <p><strong>Instructions:</strong> <%= @lesson.question_text %></p>
+      <%= content_tag(:div, class: "lesson-id", 'data-id' => @lesson.id) do %>
+      <% end %>
+      <br>
+      <%= form_tag( @lesson, method: :get, remote: true) do |f| %>
 
-          <%= submit_tag( "Submit Answer") %>
+      <%= label_tag(:answer, "Enter your answer") %>
+      <%= text_area_tag :answer, nil, size: "50x10", id: 'code_area' %>
+      <br>
+      <%= submit_tag( "Submit Answer") %>
 
-        <% end %>
-      </div>
-
+      <% end %>
       <%= link_to "Reset", code_lesson_path %>
-    </div>
+  </div>
 
+    <div id="code_lessons_page"></div>
 </div>

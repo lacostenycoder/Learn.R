@@ -14,7 +14,9 @@
 
 /* Welcome page, top logo, and main container*/
  #main_container {
-  padding: 0 5px;
+  background: lightskyblue;
+  min-height: 800px;
+  padding: 10px 5px;
   font-family: 'Open Sans', sans-serif;
  }
 
@@ -47,10 +49,11 @@
 }
 
 #welcome_box {
-  background: lightgrey;
+  background: white;
   display: inline-block;
   margin-top: -20px;
   padding: 50px;
+  background: #D7FFD8;
 }
 
 #welcome_box h1 {
@@ -110,9 +113,9 @@
 /* Code lesson show*/
 #code_lesson_text {
   line-height: 24px;
-  padding: 16px 0 16px 0;
-  display: inline-block;
+  padding: 16px 20px;
   float: left;
+  width: 300px;
 }
 
 #code_lesson_text strong {
@@ -129,6 +132,9 @@
   position: absolute;
 }
 
+.canvas {
+  float: left;
+}
 
 a {
   text-decoration: none;
@@ -166,7 +172,7 @@ a:visited {
   font-size: 36px;
   font-weight: bold;
   opacity: .9;
-  background: lightgrey;
+  background: rgb(254, 171, 9);
   border-radius: 10%;
   height: 400px;
   width: 600px;
@@ -180,4 +186,9 @@ a:visited {
 .win-message p {
   margin-top: 100px;
   padding: 40px;
+}
+
+#code_area {
+  font-size: 14px;
+  font-family: courier;
 }
