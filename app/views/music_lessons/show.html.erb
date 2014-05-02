@@ -1,4 +1,6 @@
 <div id="music-lesson-text">
+    <p><strong>Progress:</strong> <span id='total-progress'><%= current_user.progress %></span>%</p>
+    <br>
       <h1><%= @lesson.title %></h1><br>
       <p>Lesson Topics: <%= @lesson.lesson_text %></p><br>
       <p class="points">Available Points: <%= @lesson.points %></p><br>
@@ -7,7 +9,7 @@
 
 <div class="container" id="keyboard-container">
 
-      <div class="canvas" >
+      <div class="canvas"  id="keyboard-partial">
         <%= render 'keyboard' %>
       </div>
 
