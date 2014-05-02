@@ -86,6 +86,15 @@ function initMusicLesson(musicLessonObj) {
   $( "#sound-selector" ).change(function(e) {
     selectedInstrument = (e.target.value);
     audioSourcePrefix = '<audio src="/assets/' + selectedInstrument + '/';
+    var keyboardPartial = $('#keyboard-partial')
+    if (selectedInstrument === 'guitar') {
+      keyboardPartial.css('background', "url('/assets/guitar.png') no-repeat");
+      keyboardPartial.css('background-size', '90%');
+    } else {
+      keyboardPartial.css('background', "url('/assets/grandpiano.png') no-repeat");
+      keyboardPartial.css('background-size', '78%');
+    }
+    keyboardPartial.css('height', '800px');
   });
 
   function updateSoundSelector( newSelectElement ) {
