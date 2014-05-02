@@ -31,10 +31,12 @@
 </div>
 
 <div class="player"></div>
-
+<div id="keyboard-legend">
+    <img height=150px src= <%= asset_path 'music-keyboard.png' %>>
+    <p> Use the keys on your keyboard to play the notes according to this image chart.</p>
+</div>
 <div class="musiclesson">
-  <button id="lesson">Start Lesson</button>
+  <button class="start-music-button" id="lesson">Start Lesson</button>
   <div class="lesson-player"></div>
-  <p><img src= <%= asset_path 'music-keyboard.png' %>></p>
-  <p> Use the keys on your keyboard to play the notes according to this image chart.</p>
+
 </div>
