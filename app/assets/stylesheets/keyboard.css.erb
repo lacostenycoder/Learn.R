@@ -4,12 +4,42 @@
   display: block;
   background: white;
 }*/
-.keyboard-back {
-  background: url(<%= image_path('grandpiano.png') %>);
+.canvas {
+  background: url(<%= image_path('grandpiano.png') %>) no-repeat;
+  background-size: 78%;
+  height: 800px;
 }
 
-.canvas {
-    padding-top: 220px;
+#keyboard-container {
+  margin: 0 auto;
+  width: 800px;
+}
+
+#music-lesson-text {
+  width: 500px;
+  float: right;
+  margin-top: 100px;
+  margin-right: 100px;
+}
+
+#html-keypad {
+  margin-left: 115px;
+  margin-top: 200px;
+
+}
+
+.musiclesson {
+  float: left;
+}
+
+#keyboard-legend {
+  margin-left: 220px;
+
+}
+
+.keyboard-description {
+  margin-left: 150px;
+  margin-top: 20px;
 }
 
 .lesson-player {
