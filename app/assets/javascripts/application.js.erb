@@ -101,6 +101,10 @@ function ready() {
   if ($('#code_lessons_page')[0] !== undefined) {
     initCodeLesson(getCodeLesson());
   }
+
+  $('#lesson_box h3').click(function(event){
+    $(this).next().slideToggle();
+  })
 }
 
 $(document).ready(ready);

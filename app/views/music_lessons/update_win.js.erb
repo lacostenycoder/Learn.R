@@ -1,5 +1,5 @@
 if ($('.win-message').length < 1) {
-  $("<div class='win-message'><p>Way to go!</p></div>").hide().prependTo($('#keyboard-container')).fadeIn();
+  $("<div class='win-message one-edge-shadow'><p>Way to go!</p></div>").hide().prependTo($('#keyboard-container')).fadeIn();
 
   if (<%= @next_lesson_id %> !== -1) {
     $('.win-message').append("<a href='/music_lessons/<%= @next_lesson_id %>'>Next Lesson</a>");

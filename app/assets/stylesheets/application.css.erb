@@ -21,11 +21,14 @@
  }
 
  #logo {
-  height: 90px;
+  height: 80px;
+  float: left;
  }
 
  #nav {
   display: inline-block;
+  margin-left: 30px;
+  background: #4F4F4F;
  }
 
  #nav img {
@@ -45,6 +48,10 @@
  }
 
 #welcome_container {
+  text-align: center;
+}
+
+#show_container {
   text-align: center;
 }
 
@@ -71,35 +78,37 @@
   padding: 10px;
 }
 
-
 /* User show page*/
 #total-score {
   font-weight: bolder;
 }
 
 #user_sidebar {
-  background-color: pink;
-  font-size: 18px;
+  background-color: #F0A5AE;
+  font-size: 20px;
   padding: 10px;
   float: left;
-  border-top: 50px;
+  border-radius: 12px;
   width: 175px;
+  line-height: 80px;
+  margin-top: 10px;
+  border: 3px solid purple;
 }
 
 #lesson_box {
   padding: 10px 10px 10px 20px;
-  background-color: cyan;
-  border: 1px;
+  margin-right: 100px;
   display: inline-block;
   text-align: left;
-  line-height: 20px
+  line-height: 30px;
+  float: left;
+  width: 73%;
 }
 
 #lesson_box h2 {
   font-weight: bolder;
-  font-size: 24px;
+  font-size: 30px;
   line-height: 32px;
-  text-decoration: underline;
   padding: 10px 0 0 0;
 }
 
@@ -107,7 +116,35 @@
   font-weight: bolder;
   font-size: 18px;
   line-height: 32px;
-  padding: 10px 0 0 0
+  padding: 0 5px 10px 5px;
+  margin-top: 10px;
+  background: white;
+  display: inline-block;
+  border-radius: 5px 5px 0 0;
+}
+
+#lesson_box li {
+  background: white;
+  width: 350px;
+  padding: 5px 10px;
+}
+
+#code_show_section {
+  float: left;
+  margin-left: 30px;
+  padding: 10px;
+  background: #8EDDED;
+  border-radius: 12px;
+  border: 3px solid purple;
+}
+
+#music_show_section {
+  border-radius: 12px;
+  float: left;
+  margin-left: 60px;
+  padding: 10px;
+  background: #8EDDED;
+  border: 3px solid purple;
 }
 
 /* Code lesson show*/
@@ -137,23 +174,28 @@
 }
 
 a {
+  color: green;
   text-decoration: none;
-  color: blue;
 }
 
 a:hover {
-  text-decoration: underline;
+  color: dodgerblue;
 }
 
 a:visited {
-  color: purple;
+
 }
 
 .incomplete {
 
 }
 .completed {
-  text-decoration: line-through;
+
+}
+
+#checkmark {
+  color: green;
+  font-size: 24px;
 }
 
 .field {
@@ -163,9 +205,9 @@ a:visited {
 }
 
 .one-edge-shadow {
-  -webkit-box-shadow: 0 8px 6px -6px gray;
-     -moz-box-shadow: 0 8px 6px -6px gray;
-          box-shadow: 0 8px 6px -6px gray;
+  -webkit-box-shadow: 0 12px 6px -6px gray;
+     -moz-box-shadow: 0 12px 6px -6px gray;
+          box-shadow: 0 12px 6px -6px gray;
 }
 
 .win-message {
