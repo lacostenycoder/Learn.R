@@ -18,7 +18,7 @@
               <li><%= current_user.username %></li>
               <li>Score: <span id='total-score'><%= current_user.score %></span></li>
               <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
-              <li><%= link_to 'Account',  current_user %></li>
+              <li><%= link_to_unless_current 'Account',  current_user %></li>
               <li><%= image_tag(current_user.avatar) %></li>
             <% end %>
           </ul>

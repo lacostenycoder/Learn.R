@@ -3,14 +3,15 @@
   <ul>
   <% lessons.each do |lesson| %>
   <% if lesson == next_code_lesson %>
-    <li><%= link_to "Lesson #{lesson.level}: #{lesson.title}", next_code_lesson %></li>
+    <li class="one-edge-shadow"><%= link_to "Lesson #{lesson.level}: #{lesson.title}", next_code_lesson %></li>
   <% else %>
     <% if completed_code_lessons.include?(lesson) %>
-      <li class="completed"> <%= link_to "Lesson #{lesson.level}: #{lesson.title}", lesson %></li>
+      <li class="completed one-edge-shadow"> <%= link_to "Lesson #{lesson.level}: #{lesson.title}", lesson %><span id="checkmark"></%> &#x2713</span></li>
     <% else %>
-      <li class="incomplete">Lesson <%= lesson.level %>: <%= lesson.title %></li>
+      <li class="incomplete one-edge-shadow">Lesson <%= lesson.level %>: <%= lesson.title %></li>
     <% end %>
     <% end %>
   <% end %>
   </ul>
+  <br>
 <% end %>
