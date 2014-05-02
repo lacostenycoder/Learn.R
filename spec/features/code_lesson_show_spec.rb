@@ -22,6 +22,8 @@ feature 'Page should display the individual lesson that we can play'  do
     fill_in("Name", with: 'John Doe')
     fill_in("Username", with: 'jdoe')
     fill_in("Password", with: 'johndoe123')
+    fill_in("Password confirmation", with: 'johndoe123')
+    click_button("Sign up")
     user = User.find_by(name: 'John Doe')
     user.code_lessons << @lesson1
 
@@ -35,7 +37,7 @@ feature 'Page should display the individual lesson that we can play'  do
 
   scenario "when visiting the code lesson page it loads the game" do
     visit("/code_lessons/#{@lesson1.id}")
-    expect(page).to have_content("Submit")
+    expect(page).to have_content(@lesson1.lesson_text)
   end
 
   # scenario "when visiting the code lesson page it loads the game" do

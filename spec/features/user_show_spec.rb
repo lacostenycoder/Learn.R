@@ -6,6 +6,7 @@ feature 'Page should display list of Lessons started or completed' do
     new_user = User.create({email: "somekid@fakemail.com",
                             name: "Matt farts",
                             username: "somekid",
+                            avatar: 'test.png',
                             password: "butts1234",
                             password_confirmation: "butts1234"})
 
@@ -38,21 +39,24 @@ feature 'Page should display list of Lessons started or completed' do
 
   scenario "should take us to code lesson 1 when clicked" do
     click_link("Lesson #{@lesson1.level}: #{@lesson1.title}")
-    expect(page).to have_content("Welcome to Code Lesson 1")
+    expect(page).to have_content(@lesson1.title)
   end
 
   scenario "should take us to music lesson 1 when clicked" do
     click_link("Lesson #{@lesson2.level}: #{@lesson2.title}")
-    expect(page).to have_content("Welcome to Music Lesson 1")
+    expect(page).to have_content(@lesson2.title)
   end
 
-  scenario "A user should NOT be able to see a code lesson they have not reached yet" do
-    expect(page).to have_content("Code Lesson 1")
-    expect(page).to_not have_content("Code Lesson 2")
-  end
+  # Need to check that an incomplete lesson is not clickable
+
+  # scenario "A user should NOT be able to see a code lesson they have not reached yet" do
+  #   expect(page).to have_content(CodeLesson.all.first.title)
+  #   expect(page.find).to_not have_content()
+  # end
 
   scenario "user should see they're current score on their page" do
-    expect(page).to have_content("Total Score: 0")
+    score = User.find_by(email: 'somekid@fakemail.com').score
+    expect(page).to have_content("Score: #{score}")
   end
 
 end

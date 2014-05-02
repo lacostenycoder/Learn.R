@@ -11,6 +11,7 @@ describe User do
   subject(:user) { User.create(name: 'John Doe',
                                email: 'john@doe.com',
                                username: 'jdoe',
+                               avatar: 'test.png',
                                password: 'johndoe123',
                                password_confirmation: 'johndoe123')}
   describe ".new" do

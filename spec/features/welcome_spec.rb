@@ -6,6 +6,7 @@ feature "A user can navigate from the welcome page" do
     User.create(email: "john@doe.com",
                            name: 'John Doe',
                            username: "jdoe",
+                           avatar: 'test.png',
                            password: "johndoe123",
                            password_confirmation: "johndoe123")
     visit("/")
@@ -24,7 +25,7 @@ feature "A user can navigate from the welcome page" do
   scenario "should view profile page from home page" do
     sign_in('john@doe.com', 'johndoe123')
     visit("/")
-    click_link("View profile")
+    click_link("Account")
     expect(page).to have_content("jdoe")
   end
 
