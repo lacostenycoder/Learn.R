@@ -5,6 +5,7 @@ feature "A user can sign in" do
   background { User.create(email: "john@doe.com",
                            name: 'John Doe',
                            username: "jdoe",
+                           avatar: 'test.png',
                            password: "johndoe123",
                            password_confirmation: "johndoe123") }
 

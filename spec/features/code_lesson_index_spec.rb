@@ -34,6 +34,7 @@ feature 'Page should display list of Coding lessons available to the user'  do
     User.create({email: "somekid@fakemail.com",
                       name: "Matt farts",
                       username: "somekid",
+                      avatar: 'test.png',
                       password: "butts1234",
                       password_confirmation: "butts1234"})
     sign_in("somekid@fakemail.com", "butts1234")
