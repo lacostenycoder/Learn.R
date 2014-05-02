@@ -15,7 +15,7 @@ var commandConverter = {'turnLeft': turnLeft,
 
 function throwError() {
   $('.errors').empty();
-  $('.errors').append('<p>Oops looks like something went wrong</p>');
+  $('.errors').append('<p class="code_error">Something went wrong<br>Check your spelling and punctuation!</p>');
 }
 
 function runCommands(commands) {
@@ -99,14 +99,23 @@ function parseCommands(text) {
   var masterCommandList = [];
   for (var i = 0; i < lines.length - 1; i++) {
     var command = lines[i].trim();
-    var commandString = command.split("(")[0];
-    var argString = command.split("(")[1].split(")")[0];
-    argString = argString === "" ? 1 : argString;
-    for (var j = 0; j < Number(argString); j++) {
-      masterCommandList.push(commandString);
+    if (command.indexOf("(") === -1) {
+      throwError();
+      break;
+    } else if (command.indexOf(")") === -1) {
+      throwError();
+      break;
+    } else {
+      var commandString = command.split("(")[0];
+      var argString = command.split("(")[1].split(")")[0];
+      argString = argString === "" ? 1 : argString;
+      for (var j = 0; j < Number(argString); j++) {
+        masterCommandList.push(commandString);
+      }
     }
   }
   runCommands(masterCommandList);
 }
 
+$('.errors').empty();
 parseCommands($('textarea').val());

@@ -15,6 +15,7 @@
       <%= content_tag(:div, class: "lesson-id", 'data-id' => @lesson.id) do %>
       <% end %>
       <br>
+      <div class="errors"></div>
       <%= form_tag( @lesson, method: :get, remote: true) do |f| %>
 
       <%= label_tag(:answer, "Enter your answer") %>
