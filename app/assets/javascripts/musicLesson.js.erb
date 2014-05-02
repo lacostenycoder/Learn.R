@@ -64,7 +64,8 @@ function initMusicLesson(musicLessonObj) {
   var keyCheck;
   var keyToPlay;
   var gameWon = false;
-  var audioSourcePrefix = '<audio src="/assets/grand/';
+  var selectedInstrument = "piano";
+  var audioSourcePrefix = '<audio src="/assets/piano/';
   var lessonMode = false;
 
   // set event listeners for mouse and key presses
@@ -81,6 +82,15 @@ function initMusicLesson(musicLessonObj) {
   $( "body" ).on( "keyup", function( event ) {
     keyUp(event);
   });
+
+  $( "#sound-selector" ).change(function(e) {
+    selectedInstrument = (e.target.value);
+    audioSourcePrefix = '<audio src="/assets/' + selectedInstrument + '/';
+  });
+
+  function updateSoundSelector( newSelectElement ) {
+    $("#sound-selector").empty().append( newSelectElement.childNodes );
+  }
 
   function keyDown( event ){
     keyCheck = event.which;

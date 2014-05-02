@@ -1,4 +1,11 @@
 <div class="container">
+  <div>
+  <select id="sound-selector">
+  <option id="piano" value="piano">Piano</option>
+  <option id="guitar" value="guitar">Guitar</option>
+</select>
+
+  </div>
   <div class="keyboard oct1">
     <div class="key white-key" id="c2"><div class="label">C</div></div>
     <div class="key black-key" id="c-2"> <div class="label">C#</div></div>
@@ -33,6 +40,7 @@
 <div class="player"></div>
 
 <div class="musiclesson">
+  <button id="lesson">Start Lesson</button>
   <div class="lesson-player"></div>
   <p><img src= <%= asset_path 'music-keyboard.png' %>></p>
   <p> Use the keys on your keyboard to play the notes according to this image chart.</p>

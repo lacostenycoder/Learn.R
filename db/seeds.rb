@@ -19,8 +19,8 @@ MusicLesson.create(
                    question_text: 'See if you can play the A Minor Scale starting on A2 and ending on A3.',
                    img: "http://placesheen.com/200/300",
                    level: 2,
-                   points: 150,
-                   solution_key_pattern: "86, 72, 81",
+                   points: 100,
+                   solution_key_pattern: "78, 77, 81, 87, 69, 82, 84, 89",
                    category: "Scales",
                    title: "A Minor Scale",
                    global_level: 2
@@ -51,8 +51,8 @@ MusicLesson.create(
                    )
 
 MusicLesson.create(
-                   lesson_text: 'Chords are defined as a group of three or more notes combined and played simultaneously. A Major chord(Triad) is composed of the 1st(Tonic), 3rd(Mediant), and 5th(Dominant) notes of their respective Major Scale(key). So a C Major Chord is contructed from (C, E, G)',
-                   question_text: 'Using this construct formula, play a G Major Chord with G2 as the first note. First play and hold each note in order, then play together to play the chord.',
+                   lesson_text: 'Chords are defined as a group of three or more notes combined and played simultaneously. A Major chord is composed of the 1st(Tonic), 3rd(Mediant), and 5th(Dominant) notes of their respective Major Scale(key). So a C Major Chord is contructed from (C, E, G)',
+                   question_text: 'Using this construct formula, play a G Major Chord with G2 as the first note. Hold them together to play a chord',
                    img: "http://placesheen.com/200/300",
                    level: 2,
                    points: 100,
@@ -60,17 +60,6 @@ MusicLesson.create(
                    category: "Chords",
                    title: "Major Triad",
                    global_level: 5
-                   )
-MusicLesson.create(
-                   lesson_text: 'Minor Triad(chords with 3 notes) also use the same construct from their minor scale. So you would take the 1st, 3rd and 5th notes from thier minor scale to form a Minor Chord (triad). Note: the differnece between a Major and Minor triad is only the 3rd note. If you take the 3rd note of a major chord and lower it(flat) a half step, you get a minor chord. To change a major scale to minor, you flat the 3rd and 7th notes of the major scale',
-                   question_text: 'Construct a D Minor(Dm) chord starting on D2. Play them in sequence but hold each key, then play the all together.',
-                   img: "http://placesheen.com/200/300",
-                   level: 2,
-                   points: 100,
-                   solution_key_pattern: "66, 77, 87",
-                   category: "Chords",
-                   title: "Minor Triad",
-                   global_level: 6
                    )
 
 ##Code Lessons - Category Fundamentals - Lesson 1

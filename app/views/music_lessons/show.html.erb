@@ -1,8 +1,9 @@
-
-
 <div class="container" id="keyboard-container">
+    <h1><%= @lesson.title %></h1>
+    <p>Lesson Topics: <%= @lesson.lesson_text %></p>
+    <p class="points">Available Points: <%= @lesson.points %></p>
     <div class="text">
-
+      <p>Instructions: <%= @lesson.question_text %></p>
     </div>
     <div class="canvas">
       <%= render 'keyboard' %>
@@ -11,14 +12,5 @@
   <div id="music-lessons-page"></div>
     <%= content_tag(:div, class: "music-lesson-id", 'data-id' => @lesson.id) do %>
     <% end %>
-</div>
-
-<div class="music-lesson-info">
-
-    <h1 class="music-bold"><%= @lesson.title %></h1>
-    <p class="music-instructions">Lesson Topics: <%= @lesson.lesson_text %></p>
-    <p class="music-bold points">Available Points: <%= @lesson.points %></p>
-    <p class="music-instructions">Instructions: <%= @lesson.question_text %></p>
-    <button id="lesson">Start Lesson</button>
 
 </div>
