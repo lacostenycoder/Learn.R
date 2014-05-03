@@ -21,10 +21,10 @@
 </div>
 
   <% if current_user.try(:admin?) %>
-  <br>
-  <br>
+  <div id="admin-panel">
     <%= link_to "All Music Lessons", music_lessons_path %><br>
     <%= link_to "Create a new Music Lesson", new_music_lesson_path %><br>
     <%= link_to "All Code Lessons", code_lessons_path %><br>
     <%= link_to "Create a new Code Lesson", new_code_lesson_path %>
+    <div>
   <% end %>
