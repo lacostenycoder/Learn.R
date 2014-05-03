@@ -106,7 +106,7 @@ function initMusicLesson(musicLessonObj) {
     keyToPlay = keyLookup[keyCheck];
     if (!keyHeld[keyToPlay]) {
       playKey(keyToPlay);
-      $("#"+keyToPlay ).toggleClass("keypress");
+      $("#"+keyToPlay ).addClass("keypress");
       if (userInput.length > 100){
         alert('Sorry, try again!');
         userInput = "";
@@ -122,8 +122,7 @@ function initMusicLesson(musicLessonObj) {
   function keyUp( event ) {
     keyToRelease = keyLookup[event.which];
     keyHeld[keyToRelease] = false;
-    var play = $('#'+keyToPlay)
-    $('.key').removeClass('keypress');
+    $('#'+keyToRelease).removeClass('keypress');
     if(!gameWon){
       checkAnswer(userInput);
     } else {
@@ -134,7 +133,7 @@ function initMusicLesson(musicLessonObj) {
 
   function playLesson(keyCheck){
     if (lessonMode) {
-      $("#"+keyLookup[keyCheck] ).toggleClass("keypress");
+      $("#"+keyLookup[keyCheck] ).addClass("keypress");
       playLessonKey(keyLookup[keyCheck]);
       $('.key').removeClass('keypress');
     }
