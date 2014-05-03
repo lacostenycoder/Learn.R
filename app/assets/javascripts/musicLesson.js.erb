@@ -108,7 +108,7 @@ function initMusicLesson(musicLessonObj) {
     keyToPlay = keyLookup[keyPressed];
     if (!keyHeld[keyToPlay]) {
       playKey(keyToPlay);
-      $("#"+keyToPlay ).toggleClass("keypress");
+      $("#"+keyToPlay ).addClass("keypress");
       if (userInput.length > 100){
         alert('Sorry, try again!');
         userInput = "";
