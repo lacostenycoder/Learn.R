@@ -67,6 +67,7 @@ function initMusicLesson(musicLessonObj) {
   var selectedInstrument = "piano";
   var audioSourcePrefix = '<audio src="/assets/piano/';
   var lessonMode = false;
+  var sustainPedal = false;
 
   // set event listeners for mouse and key presses
 
@@ -102,17 +103,18 @@ function initMusicLesson(musicLessonObj) {
   }
 
   function keyDown( event ){
-    keyCheck = event.which;
-    keyToPlay = keyLookup[keyCheck];
+    if (event.which == 80){ sustainPedal = !!((sustainPedal == false)); }
+    keyPressed = event.which;
+    keyToPlay = keyLookup[keyPressed];
     if (!keyHeld[keyToPlay]) {
       playKey(keyToPlay);
-      $("#"+keyToPlay ).toggleClass("keypress");
+      $("#"+keyToPlay ).addClass("keypress");
       if (userInput.length > 100){
         alert('Sorry, try again!');
         userInput = "";
       }
       if (lessonMode) {
-        userInput += (keyCheck + ", ").toString();
+        userInput += (keyPressed + ", ").toString();
         console.log(userInput);
       }
       keyHeld[keyToPlay] = true;
@@ -122,8 +124,8 @@ function initMusicLesson(musicLessonObj) {
   function keyUp( event ) {
     keyToRelease = keyLookup[event.which];
     keyHeld[keyToRelease] = false;
-    var play = $('#'+keyToPlay)
-    $('.key').removeClass('keypress');
+    if (!sustainPedal){ fadeVolume(keyToRelease); }
+    $('#'+keyToRelease).removeClass('keypress');
     if(!gameWon){
       checkAnswer(userInput);
     } else {
@@ -132,9 +134,14 @@ function initMusicLesson(musicLessonObj) {
     }
   }
 
+  function fadeVolume( event ){
+    var keyToFade = "#" + event + ">audio";
+    $(keyToFade).animate({volume: 0}, 200, function () {});
+  }
+
   function playLesson(keyCheck){
     if (lessonMode) {
-      $("#"+keyLookup[keyCheck] ).toggleClass("keypress");
+      $("#"+keyLookup[keyCheck] ).addClass("keypress");
       playLessonKey(keyLookup[keyCheck]);
       $('.key').removeClass('keypress');
     }
