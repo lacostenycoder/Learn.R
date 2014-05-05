@@ -80,10 +80,10 @@ CodeLesson.create(
 
 ##Code Lessons - Category Fundamentals - Lesson 2
 CodeLesson.create(
-                  title: "Its Alive!",
+                  title: "Keep moving",
                   category: "Fundamentals",
                   lesson_text: "Excellent work! you got our MVC working!  Now we need to get him accross the room to test his limits",
-                  question_text: "How can we get our MVC to the corner of the three steps forward ",
+                  question_text: "How can we get our MVC to the south east corner of the room? If you are stuck hit back to refer to the previous lesson",
                   img: "grid1.png",
                   map_code: "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
                   level: 2,
@@ -98,7 +98,7 @@ CodeLesson.create(
                   title: "Gettin Funky",
                   category: "Fundamentals",
                   lesson_text: "Looks like our MVC is stuck in the hay!",
-                  question_text: "Turn our robot so that he looks like he's on his back and take him to the spot above him, hint(use turnLeft();)",
+                  question_text: "Turn our robot so that he looks like he's on his back and take him to the spot above him, hint: use turnLeft();",
                   img: "grid1.png",
                   map_code: "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
                   level: 3,
