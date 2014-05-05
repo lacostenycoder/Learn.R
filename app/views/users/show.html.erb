@@ -1,16 +1,16 @@
-<div id="user_sidebar" class="one-edge-shadow">
+<div id="user-sidebar" class="one-edge-shadow">
   <h1><%= @user.username %></h1>
   <%= link_to 'Edit Info', edit_user_registration_path %>
   <%= link_to 'Leaderboard', users_path %>
 </div>
 
-<div id="show_container">
-  <div id="lesson_box">
-    <div id="code_show_section" class="one-edge-shadow">
+<div id="show-container">
+  <div id="lesson-box">
+    <div id="code-show-section" class="one-edge-shadow">
       <h2>Code Lessons</h2>
       <%= render partial: 'code_lessons/index', locals: {code_lessons: @code_lessons, completed_code_lessons: @completed_code_lessons, next_code_lesson: @next_code_lesson} %>
     </div>
-    <div id="music_show_section" class="one-edge-shadow">
+    <div id="music-show-section" class="one-edge-shadow">
       <h2>Music Lessons</h2>
       <%= render partial: 'music_lessons/index', locals: { music_lessons: @music_lessons, completed_music_lessons: @completed_music_lessons, next_music_lesson: @next_music_lesson} %>
     </div>
