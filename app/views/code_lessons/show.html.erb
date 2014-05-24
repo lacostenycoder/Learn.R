@@ -2,7 +2,7 @@
     <div class="canvas">
       <canvas id="lessoncanvas" height="600" width="600"></canvas>
     </div>
-    <div id="code_lesson_text">
+    <div id="code-lesson-text">
       <p><strong>Progress:</strong> <span id='total-progress'><%= current_user.progress %></span>%</p>
       <br>
       <h1><%= @lesson.title %></h1>
@@ -19,7 +19,7 @@
       <%= form_tag( @lesson, method: :get, remote: true) do |f| %>
 
       <%= label_tag(:answer, "Enter your answer") %>
-      <%= text_area_tag :answer, nil, size: "50x10", id: 'code_area' %>
+      <%= text_area_tag :answer, nil, size: "50x10", id: 'code-area' %>
       <br>
       <%= submit_tag( "Submit Answer") %>
 
@@ -27,5 +27,5 @@
       <%= link_to "Reset", code_lesson_path %>
   </div>
 
-    <div id="code_lessons_page"></div>
+    <div id="code-lessons-page"></div>
 </div>

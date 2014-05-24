@@ -16,6 +16,7 @@ class MusicLessonsController < ApplicationController
     end
      respond_to do |format|
       format.html { }
+      format.js   { }
       format.json { render json: @lesson.to_json }
     end
   end
