@@ -11,7 +11,7 @@
   </head>
   <body>
     <div id="header" class="one-edge-shadow">
-      <%= image_tag('logo.png', id: 'logo') %>
+      <%= link_to image_tag('logo.png', id: 'logo'), current_user %>
         <div id="nav">
           <ul>
             <% if user_signed_in? %>
