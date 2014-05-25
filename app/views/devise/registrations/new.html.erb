@@ -1,38 +1,47 @@
-<h2>Sign up</h2>
+<div id="sign-up-box" class="one-edge-shadow form-box">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+  <h2 class='form-header'>Sign up</h2>
 
-  <div class="field"><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
 
-  <div class="field"><%= f.label :name %><br />
-  <%= f.text_field :name %></div>
+    <div class="field"><%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %></div>
 
-  <div class="field"><%= f.label :username %><br />
-  <%= f.text_field :username  %></div>
+    <div class="field"><%= f.label :name %><br />
+    <%= f.text_field :name %></div>
 
-  <div class="field" id="avatar">
-    <%= f.label :avatar, image_tag('code_wizard_100.png') %>
-    <%= f.radio_button :avatar, 'code_wizard_100.png', checked: 'checked' %>
+    <div class="field"><%= f.label :username %><br />
+    <%= f.text_field :username  %></div>
 
-    <%= f.label :avatar, image_tag('girl_100.png') %>
-    <%= f.radio_button :avatar, 'girl_100.png' %>
 
-    <%= f.label :avatar, image_tag('girl1_100.png') %>
-    <%= f.radio_button :avatar, 'girl1_100.png' %>
+    <div class="field"><%= f.label :password %><br />
+      <%= f.password_field :password, autocomplete: "off" %></div>
 
-    <%= f.label :avatar, image_tag('brownhaired_child_100.png') %>
-    <%= f.radio_button :avatar, 'brownhaired_child_100.png' %>
-  </div>
+    <div class="field"><%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
 
-  <div class="field"><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+    <div class="field" id="avatar">
+      <p>Select your avatar!</p>
+      <br>
+      <%= f.label :avatar, image_tag('code_wizard_100.png') %>
+      <%= f.radio_button :avatar, 'code_wizard_100.png', checked: 'checked' %>
 
-  <div class="field"><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+      <%= f.label :avatar, image_tag('girl_100.png') %>
+      <%= f.radio_button :avatar, 'girl_100.png' %>
 
-  <div class="action"><%= f.submit "Sign up" %></div>
-<% end %>
+      <%= f.label :avatar, image_tag('girl1_100.png') %>
+      <%= f.radio_button :avatar, 'girl1_100.png' %>
 
-<%= render "devise/shared/links" %>
+      <%= f.label :avatar, image_tag('brownhaired_child_100.png') %>
+      <%= f.radio_button :avatar, 'brownhaired_child_100.png' %>
+    </div>
+
+    <div class="action"><%= f.submit "Sign up" %></div>
+
+    <div class="field">
+      <%= render "devise/shared/links" %>
+    </div>
+  <% end %>
+
+</div>
