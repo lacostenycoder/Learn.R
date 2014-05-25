@@ -1,0 +1,83 @@
+var lessonID;
+var stage, robot, background, orientation;
+var robotImage = new Image();
+var backgroundImage = new Image();
+var gridRow, gridCol;
+var solutionRow, solutionCol;
+var YGRIDUNIT = 100;
+var XGRIDUNIT = 100;
+var MAPSIZE = 6;
+var map = [];
+
+function initMap(lesson) {
+  var mapCode = lesson.map_code.split(",");
+  for (var i = 0; i < MAPSIZE; i++) {
+    map[i] = [];
+    for (var j = 0; j < MAPSIZE; j++) {
+      map[i][j] = Number(mapCode.shift());
+    };
+  };
+}
+
+function getCodeLesson() {
+  lessonID = $('.lesson-id').eq(0).data().id;
+  var lesson = $.ajax({
+    url: ('/code_lessons/' + lessonID),
+    method: 'get',
+    dataType: 'json',
+    async: false
+  });
+  return lesson.responseJSON;
+}
+
+function initCodeLesson(lesson) {
+  initMap(lesson);
+  gridRow = lesson.start_row;
+  gridCol = lesson.start_col;
+  solutionRow = lesson.solution_row;
+  solutionCol = lesson.solution_col;
+  stage = new createjs.Stage(document.getElementById("lessoncanvas"));
+  robotImage.src = "<%= asset_path 'robot.png' %>";
+  robotImage.name = 'robot';
+
+  // Robot not always loading after background
+  backgroundImage.src = "/assets/" + lesson.img;
+  backgroundImage.name = 'background';
+  backgroundImage.onload = loadGridGraphics;
+  robotImage.onload = setTimeout(loadRobotGraphics, 200);
+  stage.update();
+}
+
+function loadGridGraphics() {
+  background = new createjs.Bitmap(backgroundImage);
+  stage.addChild(background);
+  stage.update();
+}
+
+function loadRobotGraphics() {
+  robot = new createjs.Bitmap(robotImage);
+  robot.regX = robot.image.width/2;
+  robot.regY = robot.image.height/2;
+  robot.x = XGRIDUNIT * gridCol + robot.regX
+  robot.y = YGRIDUNIT * gridRow + robot.regY
+  orientation = 'east';
+  stage.addChild(robot);
+  stage.update();
+}
+
+function getUser() {
+  var userID = $('.user-id').eq(0).data().id;
+  var user = $.ajax({
+    url: ('/users/' + usersID),
+    method: 'get',
+    dataType: 'json',
+    async: false
+  });
+  return user.responseJSON;
+}
+
+function lessonSliding() {
+  $('#lesson-box h3').click(function(event){
+    $(this).next().slideToggle();
+  })
+}
