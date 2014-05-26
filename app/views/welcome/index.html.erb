@@ -4,6 +4,14 @@
     <div id="inner-welcome-box">
       <%= link_to 'Sign in', new_user_session_path %>
       <%= link_to 'Sign up', new_user_registration_path %>
+      <% unless user_signed_in? %>
+        <br>
+        <br>
+        <%= link_to 'Try a music lesson', music_lesson_path(MusicLesson.find_by(global_level: 1)) %>
+        <br>
+        <br>
+        <%= link_to 'Try a code lesson', code_lesson_path(CodeLesson.find_by(global_level: 1)) %>
+      <% end %>
     </div>
   </div>
 </div>
