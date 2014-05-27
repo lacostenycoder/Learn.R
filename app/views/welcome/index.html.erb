@@ -2,15 +2,17 @@
   <div id="welcome-box" class="one-edge-shadow">
     <h1>Welcome to LearnR!</h1>
     <div id="inner-welcome-box">
-      <%= link_to 'Sign in', new_user_session_path %>
-      <%= link_to 'Sign up', new_user_registration_path %>
+      <%= link_to 'Sign in', new_user_session_path, class: 'register-link homepage-link' %>
+      <%= link_to 'Sign up', new_user_registration_path, class: 'register-link homepage-link' %>
+        <br>
+        <br>
       <% unless user_signed_in? %>
         <br>
         <br>
-        <%= link_to 'Try a music lesson', music_lesson_path(MusicLesson.find_by(global_level: 1)) %>
+        <%= link_to 'Try a music lesson', music_lesson_path(MusicLesson.find_by(global_level: 1)), class: 'try-lesson-link homepage-link' %>
         <br>
         <br>
-        <%= link_to 'Try a code lesson', code_lesson_path(CodeLesson.find_by(global_level: 1)) %>
+        <%= link_to 'Try a code lesson', code_lesson_path(CodeLesson.find_by(global_level: 1)), class: 'try-lesson-link homepage-link' %>
       <% end %>
     </div>
   </div>
