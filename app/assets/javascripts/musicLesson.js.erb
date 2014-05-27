@@ -56,6 +56,13 @@ function initMusicLesson(musicLessonObj) {
     "c5": false
   }
 
+  // 25 empty sound objects to be declaired on banks
+  var sound01, sound02, sound03, sound04, sound05, sound06, sound07, sound08, sound09, sound10, sound11, sound12, sound13, sound14, sound15, sound16, sound17, sound18, sound19, sound20, sound21, sound22, sound23, sound24, sound25;
+
+  var context = new webkitAudioContext(); // Create Audio Container
+  sourceGainNode = context.createGainNode(); // Create source gain control
+  compressorPost = context.createDynamicsCompressor(); // Create post filter compressor
+  masterGainNode = context.createGainNode(); // Create master gain control
 
   var musicLessonID = musicLessonObj.id;
   var lessonSeq = musicLessonObj.solution_key_pattern; // this will come from database
@@ -66,8 +73,12 @@ function initMusicLesson(musicLessonObj) {
   var gameWon = false;
   var selectedInstrument = "piano";
   var audioSourcePrefix = '<audio src="/assets/piano/';
+  var audioSourcePath = '/assets/piano/';
   var lessonMode = false;
   var sustainPedal = false;
+  var note;
+
+  // end main var declairations
 
   // set event listeners for mouse and key presses
 
@@ -84,25 +95,69 @@ function initMusicLesson(musicLessonObj) {
     keyUp(event);
   });
 
+  $("body").on("loadSounds", function( even ) {
+    loadSounds(event);
+  });
+
   $( "#sound-selector" ).change(function(e) {
     selectedInstrument = (e.target.value);
     audioSourcePrefix = '<audio src="/assets/' + selectedInstrument + '/';
+    audioSourcePath = '/assets' + selectedInstrument + '/';
     var keyboardPartial = $('#keyboard-partial')
     if (selectedInstrument === 'guitar') {
       keyboardPartial.css('background', "url('/assets/guitar.png') no-repeat");
       keyboardPartial.css('background-size', '90%');
+      keyBank('guitar');
     } else {
       keyboardPartial.css('background-size', '78%');
       keyboardPartial.css('background', "url('/assets/grandpiano.png') no-repeat");
+      keyBank('piano');
     }
     keyboardPartial.css('height', '800px');
   });
+
+    var keyBank = function(bank){
+      var arr = [
+       "c2",
+       "c-2",
+       "d2",
+       "d-2",
+       "e2",
+       "f2",
+       "f-2",
+       "g2",
+       "g-2",
+       "a3",
+       "a-3",
+       "b3",
+       "c3",
+       "c-3",
+       "d3",
+       "d-3",
+       "e3",
+       "f3",
+       "f-3",
+       "g3",
+       "g-3",
+       "a4",
+       "a-4",
+       "b4",
+       "c5"
+      ]
+      for(i=0; i < arr.length; i++) {
+        console.log('count is: ' + i);
+        var filename = arr[i]
+        var path = "../assets/" + bank + "/" + filename + ".mp3";
+        keyPlayer(filename, path );
+      }
+    }
 
   function updateSoundSelector( newSelectElement ) {
     $("#sound-selector").empty().append( newSelectElement.childNodes );
   }
 
   function keyDown( event ){
+    playAudioFile;
     if (event.which == 80){ sustainPedal = !!((sustainPedal == false)); }
     keyPressed = event.which;
     keyToPlay = keyLookup[keyPressed];
@@ -134,6 +189,50 @@ function initMusicLesson(musicLessonObj) {
     }
   }
 
+  function playKey(keyId){
+    if (!keyHeld[keyId]) {
+      var thisKey = $('#'+keyToPlay);
+      if (thisKey.length > 0) {
+        thisKey.find('audio').remove();
+        thisKey.append(audioSourcePrefix + keyId + '.mp3"></audio>');
+      }
+        thisKey.find('audio').trigger('play');
+    }
+  }
+
+   playAudioFile = function () {
+       var source = context.createBufferSource();
+       source.buffer = savedBuffer;
+       source.connect(sourceGainNode);
+       source.noteOn(0); // Play sound immediately
+       };
+
+   // new functions using web audio api buffering
+  function keyPlayer(domNode,fileDirectory) {
+    this.domNode = domNode;
+    this.fileDirectory = fileDirectory;
+    var playAudioFile = playAudioFile;
+    var incomingBuffer;
+    var savedBuffer;
+    var xhr;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('get',fileDirectory, true);
+    xhr.responseType = 'arraybuffer';
+    xhr.onload = function () {
+    context.decodeAudioData(xhr.response,
+       function(incomingBuffer) {
+       savedBuffer = incomingBuffer; // Save the buffer, we'll reuse it
+     // Once the file is loaded, listen for click on div
+     // Use playAudioFile since it no longer requires a buffer to be passed to it
+       note = document.getElementById(domNode);
+       //note.addEventListener("mouseover", playAudioFile , true);
+         }
+      );
+    };
+    xhr.send();
+  }
+
   function fadeVolume( event ){
     var keyToFade = "#" + event + ">audio";
     $(keyToFade).animate({volume: 0}, 200, function () {});
@@ -147,16 +246,6 @@ function initMusicLesson(musicLessonObj) {
     }
   }
 
-  function playKey(keyId){
-    if (!keyHeld[keyId]) {
-      var thisKey = $('#'+keyToPlay);
-      if (thisKey.length > 0) {
-        thisKey.find('audio').remove();
-        thisKey.append(audioSourcePrefix + keyId + '.mp3"></audio>');
-      }
-        thisKey.find('audio').trigger('play');
-    }
-  }
 
   function playLessonKey(keyId){
    $('.lesson-player').empty();
