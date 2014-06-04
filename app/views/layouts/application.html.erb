@@ -11,7 +11,7 @@
   </head>
   <body>
     <div id="header" class="one-edge-shadow">
-      <%= image_tag('logo.png', id: 'logo') %>
+      <%= link_to_unless_current image_tag('logo.png', id: 'logo'), current_user %>
         <div id="nav">
           <ul>
             <% if user_signed_in? %>
@@ -27,6 +27,7 @@
     <div id="main-container">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
+      <p class="quick_start"><%= flash[:quick_start] %></p>
       <%= yield %>
     </div>
   </body>

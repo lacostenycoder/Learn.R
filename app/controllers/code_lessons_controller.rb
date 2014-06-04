@@ -1,6 +1,5 @@
 class CodeLessonsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:show]
   before_action :require_admin_authentication, only: [:index, :new, :create, :edit, :update, :destroy]
 
   def index
@@ -9,10 +8,18 @@ class CodeLessonsController < ApplicationController
 
   def show
     @lesson = CodeLesson.find(params[:id])
-    # check to make sure user is up to this level
-    user_max_code_lesson_global_level = current_user.code_lessons.pluck(:global_level).max || 0
-    if @lesson.global_level > (user_max_code_lesson_global_level + 1)
-      redirect_to root_path unless current_user.admin
+    if user_signed_in?
+      # check to make sure user is up to this level
+      user_max_code_lesson_global_level = current_user.code_lessons.pluck(:global_level).max || 0
+      if @lesson.global_level > (user_max_code_lesson_global_level + 1)
+        redirect_to root_path unless current_user.admin
+      end
+    else
+      # To allow non-logged in users to play 1 level before signing up
+      if @lesson.global_level > 1
+        flash[:quick_start] = 'Please sign up to continue playing'
+        redirect_to root_path
+      end
     end
     respond_to do |format|
       format.html { }
@@ -48,10 +55,16 @@ class CodeLessonsController < ApplicationController
 
   def update_win
     lesson = CodeLesson.find(params[:id])
-    unless current_user.code_lessons.include?(lesson)
-      current_user.code_lessons << lesson
-      current_user.score += lesson.points
-      current_user.save
+    if user_signed_in?
+      unless current_user.code_lessons.include?(lesson)
+        current_user.code_lessons << lesson
+        current_user.score += lesson.points
+        current_user.save
+      end
+      @redirect_page = 'false'
+    else
+      flash[:quick_start] = 'Nice Job! Please sign up to continue playing'
+      @redirect_page = 'true'
     end
     next_lesson = CodeLesson.find_by(global_level: lesson.global_level + 1)
     @next_lesson_id = next_lesson.nil? ? -1 : next_lesson.id

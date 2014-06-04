@@ -15,21 +15,26 @@
 /* Welcome page, top logo, and main container*/
  #main-container {
   background: lightskyblue;
+  margin: 0;
   min-height: 800px;
-  padding: 30px 5px 0 5px;
+  min-width: 1270px;
+  padding: 30px 0px 0 5px;
   font-family: 'Open Sans', sans-serif;
  }
 
+ #header {
+  min-width: 1270px;
+ }
+
  #logo {
-  height: 80px;
   float: left;
+  height: 80px;
  }
 
  #nav {
-  padding-bottom: 10px;
-  display: inline-block;
-  margin-left: 30px;
+  float: left;
   font-size: 20px;
+  margin-left: 20px;
  }
 #nav a:link {color:#FF0000;}      /* unvisited link */
 #nav a:visited {color:#00FF00;}  /* visited link */
@@ -76,11 +81,23 @@
 #inner-welcome-box {
   margin: 0 auto;
   padding: 20px;
-  width: 150px;
 }
 
-#inner-welcome-box a {
-  padding: 10px;
+.homepage-link {
+  background: lightskyblue;
+  border: 2px solid lightgrey;
+  border-radius: 15px;
+  color: black;
+  font-size: 18px;
+  padding: 2px 15px;
+}
+
+.register-link {
+  margin: 0 10px;
+}
+
+.try-lesson-link {
+  font-size: 12px;
 }
 
 /* User show page*/
@@ -126,6 +143,7 @@
   background: white;
   display: inline-block;
   border-radius: 5px 5px 0 0;
+  cursor: pointer;
 }
 
 #lesson-box li {
@@ -208,15 +226,58 @@
 }
 
 /* User sign in page */
-#sign-in-header {
+.form-header {
+  font-size: 24px;
   font-weight: bolder;
+  text-align: center;
+  padding: 20px;
+}
+
+.form-box {
+ background: #D7FFD8;
+ padding: 20px;
+ margin: 0 auto;
 }
 
 #sign-in-box {
- background: #D7FFD8;
- padding: 20px;
  width: 300px;
- margin: 0 auto;
+}
+
+#sign-up-box {
+  width: 500px;
+}
+
+#reset-password-box {
+  width: 400px;
+}
+
+#password-button {
+  width: 300px;
+}
+
+#edit-user-box {
+  width: 700px;
+}
+
+.field {
+  padding: 10px;
+  width: 700px;
+}
+
+.field input {
+  margin: 5px 0 0 0;
+}
+
+.action {
+  padding: 10px;
+}
+
+.action input[type="submit"] {
+  background: lightskyblue;
+  border-radius: 10px;
+  font-size: 16px;
+  height: 30px;
+  width: 90px;
 }
 
 a {
@@ -228,26 +289,9 @@ a:hover {
   color: dodgerblue;
 }
 
-a:visited {
-
-}
-
-.incomplete {
-
-}
-.completed {
-
-}
-
 #checkmark {
   color: green;
   font-size: 24px;
-}
-
-.field {
-  margin: 0 auto;
-  padding: 10px;
-  width: 700px;
 }
 
 .one-edge-shadow {

@@ -1,34 +1,22 @@
-if ($('.win-message').length < 1) {
-  $("<div class='win-message one-edge-shadow'><p>Way to go!</p></div>").hide().prependTo($('#keyboard-container')).fadeIn();
+if ("<%= @redirect_page %>" === "true") {
+  window.location.replace('/');
+} else {
 
-  if (<%= @next_lesson_id %> !== -1) {
-    $('.win-message').append("<a href='/music_lessons/<%= @next_lesson_id %>'>Next Lesson</a>");
-  } else {
-    $('.win-message').append("<p>You've completed all lessons! Check back for more in the future!</p>");
+  if ($('.win-message').length < 1) {
+    $("<div class='win-message one-edge-shadow'><p>Way to go!</p></div>").hide().prependTo($('#keyboard-container')).fadeIn();
+
+    if (<%= @next_lesson_id %> !== -1) {
+      $('.win-message').append("<a href='/music_lessons/<%= @next_lesson_id %>'>Next Lesson</a>");
+    } else {
+      $('.win-message').append("<p>You've completed all lessons! Check back for more in the future!</p>");
+    }
   }
+
+  $('#total-score').fadeOut(function(){
+    $(this).text(<%= current_user.score if current_user %>).fadeIn();
+  });
+
+  $('#total-progress').fadeOut(function(){
+    $(this).text(<%= current_user.progress if current_user %>).fadeIn();
+  });
 }
-
-$('#total-score').fadeOut(function(){
-  $(this).text(<%= current_user.score %>).fadeIn();
-});
-
-$('#total-progress').fadeOut(function(){
-  $(this).text(<%= current_user.progress %>).fadeIn();
-});
-
-// if ($('.win-message').length < 1) {
-
-//   if (<%= @next_lesson_id %> !== -1) {
-//     $('.win-message').append("<a href='/code_lessons/<%= @next_lesson_id %>'>Next Lesson</a>");
-//   } else {
-//     $('.win-message').append("<p>You've completed all lessons! Check back for more in the future!</p>");
-//   }
-// }
-
-// $('#total-score').fadeOut(function(){
-//   $(this).text(<%= current_user.score %>).fadeIn();
-// });
-
-// $('#total-progress').fadeOut(function(){
-//   $(this).text(<%= current_user.progress %>).fadeIn();
-// });

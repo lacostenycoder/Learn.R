@@ -1,10 +1,14 @@
 <div class="container">
     <div class="canvas">
       <canvas id="lessoncanvas" height="600" width="600"></canvas>
+      <br><br>
+      <p>(Don't see the robot? Try refreshing)</p>
     </div>
     <div id="code-lesson-text">
-      <p><strong>Progress:</strong> <span id='total-progress'><%= current_user.progress %></span>%</p>
-      <br>
+      <% if user_signed_in? %>
+        <p><strong>Progress:</strong> <span id='total-progress'><%= current_user.progress %></span>%</p>
+        <br>
+      <% end %>
       <h1><%= @lesson.title %></h1>
 
       <p><strong>Lesson Topic</strong>: <%= @lesson.lesson_text %></p>
