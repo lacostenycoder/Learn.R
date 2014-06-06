@@ -34,7 +34,7 @@ var keyBank = function(bank){
   for(i=0; i < arr.length; i++) {
     filename = arr[i]
     path = "../assets/" + bank + "/" + filename + ".mp3";
-    //keyPlayer(filename, path );
+    keyPlayer(filename, path );
     newArr.push(path);
     console.log(newArr[i]);
   }
@@ -42,7 +42,7 @@ var keyBank = function(bank){
 }
 
 function bufferBuilder(bankArr) {
-  //bankArr = keyBank(bankArr);
+  bankArr = keyBank(bankArr);
   // Fix up prefixing
   bufferLoader = new BufferLoader(
     context, bankArr,
