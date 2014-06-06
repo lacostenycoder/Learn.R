@@ -28,6 +28,34 @@ function initMusicLesson(musicLessonObj) {
     73: "c5"
   }
 
+  var keyToPlay = {
+    90: 0,
+    83: 1,
+    88: 2,
+    68: 3,
+    67: 4,
+    86: 5,
+    71: 6,
+    66: 7,
+    72: 8,
+    78: 9,
+    74: 10,
+    77: 11,
+    81: 12,
+    50: 13,
+    87: 14,
+    51: 15,
+    69: 16,
+    82: 17,
+    53: 18,
+    84: 19,
+    54: 20,
+    89: 21,
+    55: 22,
+    85: 23,
+    73: 24
+  }
+
   var keyHeld = {
     "c2": false,
     "c-2": false,
@@ -56,6 +84,15 @@ function initMusicLesson(musicLessonObj) {
     "c5": false
   }
 
+  window.AudioContext = window.AudioContext || window.webkitAudioContext;
+  context = new AudioContext();
+  sourceGainNode = context.createGainNode();
+  compressorPost = context.createDynamicsCompressor();
+  masterGainNode = context.createGainNode();
+  bufferLoader = new BufferLoader();
+  keyBank('piano');
+  // 25 empty sound objects to be declaired on banks
+  var sound01, sound02, sound03, sound04, sound05, sound06, sound07, sound08, sound09, sound10, sound11, sound12, sound13, sound14, sound15, sound16, sound17, sound18, sound19, sound20, sound21, sound22, sound23, sound24, sound25;
 
   var musicLessonID = musicLessonObj.id;
   var lessonSeq = musicLessonObj.solution_key_pattern; // this will come from database
@@ -103,11 +140,12 @@ function initMusicLesson(musicLessonObj) {
   }
 
   function keyDown( event ){
+    //playAudioFile;
     if (event.which == 80){ sustainPedal = !!((sustainPedal == false)); }
     keyPressed = event.which;
     keyToPlay = keyLookup[keyPressed];
     if (!keyHeld[keyToPlay]) {
-      playKey(keyToPlay);
+      playKey(keyToPlay, keyPressed);
       $("#"+keyToPlay ).addClass("keypress");
       if (userInput.length > 100){
         alert('Sorry, try again!');
@@ -133,6 +171,26 @@ function initMusicLesson(musicLessonObj) {
       gameWon = false;
     }
   }
+
+  function playKey(keyId, keyKey){
+    if (!keyHeld[keyId]) {
+      var thisKey = $('#'+keyToPlay);
+      if (thisKey.length > 0) {
+        thisKey.find('audio').remove();
+        thisKey.append(audioSourcePrefix + keyId + '.mp3"></audio>');
+        console.log(keyId);
+        var id = keyLookup[keyId];
+        sound01 = context.createBufferSource();
+        sound01.buffer = eval('bufferLoader.bufferList[' + keyKey + ']');
+        sound01.connect(context.destination);
+        sound01.start();
+      }
+        //thisKey.find('audio').trigger('play');
+        //sound01.start(0);
+
+    }
+  }
+
 
   function fadeVolume( event ){
     var keyToFade = "#" + event + ">audio";
