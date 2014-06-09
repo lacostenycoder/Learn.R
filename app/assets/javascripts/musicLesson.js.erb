@@ -1,5 +1,9 @@
 function initMusicLesson(musicLessonObj) {
 
+  var context = new webkitAudioContext() || new AudioContext();
+
+  var soundArr = [];
+
   var keyLookup = {
     90: "c2",
     83: "c-2",
@@ -28,6 +32,36 @@ function initMusicLesson(musicLessonObj) {
     73: "c5"
   }
 
+  var bankLoader = [
+    {key: 90, note: "c2"},
+    {key: 83, note: "c-2"},
+    {key: 88, note: "d2"},
+    {key: 68, note: "d-2"},
+    {key: 67, note: "e2"},
+    {key: 86, note: "f2"},
+    {key: 71, note: "f-2"},
+    {key: 66, note: "g2"},
+    {key: 72, note: "g-2"},
+    {key: 78, note: "a3"},
+    {key: 74, note: "a-3"},
+    {key: 77, note: "b3"},
+    {key: 81, note: "c3"},
+    {key: 50, note: "c-3"},
+    {key: 87, note: "d3"},
+    {key: 51, note: "d-3"},
+    {key: 69, note: "e3"},
+    {key: 82, note: "f3"},
+    {key: 53, note: "f-3"},
+    {key: 84, note: "g3"},
+    {key: 54, note: "g-3"},
+    {key: 89, note: "a4"},
+    {key: 55, note: "a-4"},
+    {key: 85, note: "b4"},
+    {key: 73, note: "c5"},
+  ];
+
+
+
   var keyHeld = {
     "c2": false,
     "c-2": false,
@@ -55,6 +89,7 @@ function initMusicLesson(musicLessonObj) {
     "b4": false,
     "c5": false
   }
+
 
 
   var musicLessonID = musicLessonObj.id;
@@ -91,9 +126,11 @@ function initMusicLesson(musicLessonObj) {
     if (selectedInstrument === 'guitar') {
       keyboardPartial.css('background', "url('/assets/guitar.png') no-repeat");
       keyboardPartial.css('background-size', '90%');
+      loadKeyBank('guitar');
     } else {
       keyboardPartial.css('background-size', '78%');
       keyboardPartial.css('background', "url('/assets/grandpiano.png') no-repeat");
+      loadKeyBank('piano');
     }
     keyboardPartial.css('height', '800px');
   });
@@ -101,6 +138,26 @@ function initMusicLesson(musicLessonObj) {
   function updateSoundSelector( newSelectElement ) {
     $("#sound-selector").empty().append( newSelectElement.childNodes );
   }
+
+  function loadKeyBank(bank){
+    for(i=0; i<bankLoader.length; i++){
+    var keyToPlay = keyLookup[bankLoader[i].key];
+    var keyId = bankLoader[i].note;
+    var thisKey = $('#'+keyToPlay);
+    thisKey.append('<audio preload = "auto"  src="/assets/' + bank + '/' + keyId + '.mp3"></audio>');
+    soundArr.push({key: keyId});
+    soundArr[i].buffer =  new BufferLoader(bankLoader[i].note);
+    console.log('http://solidshaker.com/soundbanks/' + bank + '/' + keyId + '.mp3');
+    console.log(soundArr[i].buffer.load);
+    soundArr[i].buffer.load(soundArr[i].key, 'http://solidshaker.com/soundbanks/' + bank + '/' + keyId + '.mp3');
+    //sound.load(sound, audioSourcePrefix + '/assets/' + bank + '/' + keyId + '.mp3');
+    //sound.play(keyToPlay);
+    //document.addEventListener('keydown', play.bind(this, ));
+    //document.addEventListener('keyup', stopSound.bind(this, key, sound));
+    }
+  }
+
+  loadKeyBank(selectedInstrument);
 
   function keyDown( event ){
     if (event.which == 80){ sustainPedal = !!((sustainPedal == false)); }
@@ -137,6 +194,7 @@ function initMusicLesson(musicLessonObj) {
   function fadeVolume( event ){
     var keyToFade = "#" + event + ">audio";
     $(keyToFade).animate({volume: 0}, 200, function () {});
+    //$(keyToFade).prop("currentTime",0);
   }
 
   function playLesson(keyCheck){
@@ -151,10 +209,11 @@ function initMusicLesson(musicLessonObj) {
     if (!keyHeld[keyId]) {
       var thisKey = $('#'+keyToPlay);
       if (thisKey.length > 0) {
-        thisKey.find('audio').remove();
-        thisKey.append(audioSourcePrefix + keyId + '.mp3"></audio>');
+        //thisKey.find('audio').remove();
+        //thisKey.append(audioSourcePrefix + keyId + '.mp3"></audio>');
       }
-        thisKey.find('audio').trigger('play');
+        //thisKey.find('audio').trigger('play');
+        soundArr[i].keyToPlay.play(keyToPlay);
     }
   }
 
