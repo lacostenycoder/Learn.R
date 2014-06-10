@@ -1,7 +1,7 @@
 var lessonID;
 var stage, robot, background, orientation;
-var robotImage = new Image();
 var backgroundImage = new Image();
+var robotImage = new Image();
 var gridRow, gridCol;
 var solutionRow, solutionCol;
 var YGRIDUNIT = 100;
@@ -37,14 +37,9 @@ function initCodeLesson(lesson) {
   solutionRow = lesson.solution_row;
   solutionCol = lesson.solution_col;
   stage = new createjs.Stage(document.getElementById("lessoncanvas"));
-  robotImage.src = "<%= asset_path 'robot.png' %>";
-  robotImage.name = 'robot';
-
-  // Robot not always loading after background
   backgroundImage.src = "/assets/" + lesson.img;
   backgroundImage.name = 'background';
   backgroundImage.onload = loadGridGraphics;
-  robotImage.onload = setTimeout(loadRobotGraphics, 200);
   stage.update();
 }
 
@@ -52,6 +47,10 @@ function loadGridGraphics() {
   background = new createjs.Bitmap(backgroundImage);
   stage.addChild(background);
   stage.update();
+  // this called within grid function to preserve order
+  robotImage.src = "<%= asset_path 'robot.png' %>";
+  robotImage.name = 'robot';
+  robotImage.onload = setTimeout(loadRobotGraphics, 200);
 }
 
 function loadRobotGraphics() {
