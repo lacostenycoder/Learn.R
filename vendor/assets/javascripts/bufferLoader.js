@@ -1,73 +1,46 @@
-/**
- * Buffer Loader.js
- *
- * A small abstraction around the HTML5 buffer loader interface
- *
- */
+function BufferLoader(context, urlList, callback) {
+  this.context = context;
+  this.urlList = urlList;
+  this.onload = callback;
+  this.bufferList = new Array();
+  this.loadCount = 0;
+}
 
-//window.AudioContext = window.AudioContext || window.webkitAudioContext;
+BufferLoader.prototype.loadBuffer = function(url, index) {
+  // Load buffer asynchronously
+  var request = new XMLHttpRequest();
+  request.open("GET", url, true);
+  request.responseType = "arraybuffer";
 
-var BufferLoader = function(sources) {
-    this.buffers = { };
-    this.context = null;
-    this.init();
-};
+  var loader = this;
 
-BufferLoader.prototype.init = function() {
-  try {
-    window.AudioContext = window.AudioContext || window.webkitAudioContext;
-    this.context = new AudioContext();
-  }
-  catch(_) {
-    alert('Web Audio API is not supported in this browser');
-  }
-};
-
-BufferLoader.prototype.onBufferLoadError = function(_) {
-    console.error('Error loading buffer');
-};
-
-BufferLoader.prototype.onBufferLoad = function(bufferName, xhr, callback) {
-    this.context.decodeAudioData(xhr.response, _.bind(function onSuccess(buffer) {
-        this.buffers[bufferName] = buffer;
-        if (typeof callback === 'function') {
-            callback.call(this);
+  request.onload = function() {
+    // Asynchronously decode the audio file data in request.response
+    loader.context.decodeAudioData(
+      request.response,
+      function(buffer) {
+        if (!buffer) {
+          alert('error decoding file data: ' + url);
+          return;
         }
-    }, this), this.onBufferError);
-};
+        loader.bufferList[index] = buffer;
+        if (++loader.loadCount == loader.urlList.length)
+          loader.onload(loader.bufferList);
+      },
+      function(error) {
+        console.error('decodeAudioData error', error);
+      }
+    );
+  }
 
-BufferLoader.prototype.load = function(bufferName, url) {
-    var request = new XMLHttpRequest();
-    request.open('GET', url, true);
-    request.responseType = 'arraybuffer';
-    console.log(request)
-    request.onload = _.bind(function() {
-    this.onBufferLoad(bufferName, request);
-    }, this);
-    request.onerror = function() {
-        console.error('BufferLoader: XHR error');
-    };
-    request.send();
-};
+  request.onerror = function() {
+    alert('BufferLoader: XHR error');
+  }
 
-BufferLoader.prototype._playBuffer = function(name, gain, time) {
-    var source = this.context.createBufferSource();
-    source.buffer = buffer;
-    var gainNode = this.context.createGainNode();
-    gainNode.gain.value = gain;
-    source.connect(gainNode); /* Connect the SourceNode to the GainNode. */
-    gainNode.connect(this.context.destination); /* Connect the GainNode to the DestinationNode. */
-    source.connect(this.context.destination);
-    source.start(time);
-};
+  request.send();
+}
 
-BufferLoader.prototype.play = function (name, gain, time) {
-
-    // Default values for time and gain
-    gain = typeof gain !== 'undefined' ? gain : 1;
-    time = typeof time !== 'undefined' ? time : 0;
-
-    var buffer = this.buffers[name];
-    if (buffer) { this._playBuffer(name, time, gain); }
-    else { throw new Error("Buffer does not exist"); }
-};
+BufferLoader.prototype.load = function() {
+  for (var i = 0; i < this.urlList.length; ++i)
+  this.loadBuffer(this.urlList[i], i);
+}

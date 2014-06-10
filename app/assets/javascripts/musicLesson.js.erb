@@ -1,8 +1,9 @@
+var soundArr = [];
+var context = new webkitAudioContext() || new AudioContext();
+var audioBuffer = [];
+var bufferLoader;
+
 function initMusicLesson(musicLessonObj) {
-
-  var context = new webkitAudioContext() || new AudioContext();
-
-  var soundArr = [];
 
   var keyLookup = {
     90: "c2",
@@ -60,8 +61,6 @@ function initMusicLesson(musicLessonObj) {
     {key: 73, note: "c5"},
   ];
 
-
-
   var keyHeld = {
     "c2": false,
     "c-2": false,
@@ -90,8 +89,6 @@ function initMusicLesson(musicLessonObj) {
     "c5": false
   }
 
-
-
   var musicLessonID = musicLessonObj.id;
   var lessonSeq = musicLessonObj.solution_key_pattern; // this will come from database
   var lessonText = "Here is a C major scale. Can you play it?"
@@ -102,7 +99,7 @@ function initMusicLesson(musicLessonObj) {
   var selectedInstrument = "piano";
   var audioSourcePrefix = '<audio src="/assets/piano/';
   var lessonMode = false;
-  var sustainPedal = false;
+  var sustainPedal = true;
 
   // set event listeners for mouse and key presses
 
@@ -141,23 +138,18 @@ function initMusicLesson(musicLessonObj) {
 
   function loadKeyBank(bank){
     for(i=0; i<bankLoader.length; i++){
-    var keyToPlay = keyLookup[bankLoader[i].key];
-    var keyId = bankLoader[i].note;
-    var thisKey = $('#'+keyToPlay);
-    thisKey.append('<audio preload = "auto"  src="/assets/' + bank + '/' + keyId + '.mp3"></audio>');
-    soundArr.push({key: keyId});
-    soundArr[i].buffer =  new BufferLoader(bankLoader[i].note);
-    console.log('http://solidshaker.com/soundbanks/' + bank + '/' + keyId + '.mp3');
-    console.log(soundArr[i].buffer.load);
-    soundArr[i].buffer.load(soundArr[i].key, 'http://solidshaker.com/soundbanks/' + bank + '/' + keyId + '.mp3');
-    //sound.load(sound, audioSourcePrefix + '/assets/' + bank + '/' + keyId + '.mp3');
-    //sound.play(keyToPlay);
-    //document.addEventListener('keydown', play.bind(this, ));
-    //document.addEventListener('keyup', stopSound.bind(this, key, sound));
+      var keyToPlay = keyLookup[bankLoader[i].key];
+      var keyId = bankLoader[i].note;
+      var thisKey = $('#'+keyToPlay);
+      var url = '/assets/' + bank + '/' + keyId + '.mp3';
+      soundArr[i] = {key: keyId, buffer: url, sound: i};
     }
+    buildBank(soundArr);
   }
 
   loadKeyBank(selectedInstrument);
+  var soundLoader = new BufferLoader();
+
 
   function keyDown( event ){
     if (event.which == 80){ sustainPedal = !!((sustainPedal == false)); }
@@ -168,11 +160,11 @@ function initMusicLesson(musicLessonObj) {
       $("#"+keyToPlay ).addClass("keypress");
       if (userInput.length > 100){
         alert('Sorry, try again!');
+        $("#"+keyToPlay ).removeClass("keypress");
         userInput = "";
       }
       if (lessonMode) {
         userInput += (keyPressed + ", ").toString();
-        console.log(userInput);
       }
       keyHeld[keyToPlay] = true;
     }
@@ -192,9 +184,8 @@ function initMusicLesson(musicLessonObj) {
   }
 
   function fadeVolume( event ){
-    var keyToFade = "#" + event + ">audio";
-    $(keyToFade).animate({volume: 0}, 200, function () {});
-    //$(keyToFade).prop("currentTime",0);
+     var fade = $.grep(soundArr, function(e){ return e.key === event; })[0];
+     fadeSound(bufferLoader.bufferList[fade.sound]);
   }
 
   function playLesson(keyCheck){
@@ -209,26 +200,23 @@ function initMusicLesson(musicLessonObj) {
     if (!keyHeld[keyId]) {
       var thisKey = $('#'+keyToPlay);
       if (thisKey.length > 0) {
-        //thisKey.find('audio').remove();
-        //thisKey.append(audioSourcePrefix + keyId + '.mp3"></audio>');
+        var play = $.grep(soundArr, function(e){ return e.key === keyId; })[0];
+        playSound(bufferLoader.bufferList[play.sound]);
       }
-        //thisKey.find('audio').trigger('play');
-        soundArr[i].keyToPlay.play(keyToPlay);
+
     }
   }
 
   function playLessonKey(keyId){
    $('.lesson-player').empty();
-    //This might not work in produciton
-    var audioTag = $(audioSourcePrefix + keyId + '.mp3"></audio>');
-    audioTag.appendTo('.lesson-player');
-    $('.lesson-player audio').eq(0).trigger('play');
+   var play = $.grep(soundArr, function(e){ return e.key === keyId; })[0];
+   playSound(bufferLoader.bufferList[play.sound]);
+
   }
 
   function startLesson(){
     $('.player').empty();
     $('.lesson-player').empty();
-    // $('.lesson-player').append(lessonText);
     playSequence(lessonSeq);
   }
 
@@ -243,9 +231,10 @@ function initMusicLesson(musicLessonObj) {
         var keyCode = keyLookup[note];
         $("div#"+keyCode).addClass("keypress");
         playLessonKey(keyCode);
+        setInterval(function(){ $('.key').removeClass('keypress');}, 450);
       }
       counter ++;
-      if (counter > max) {
+      if (counter >= max) {
         clearInterval(i);
       }
     }, 500);
