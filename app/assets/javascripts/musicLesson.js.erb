@@ -1,5 +1,7 @@
 var soundArr = [];
 var context = new webkitAudioContext() || new AudioContext();
+var compressor = context.createDynamicsCompressor();
+compressor.connect(context.destination);
 var audioBuffer = [];
 var bufferLoader;
 

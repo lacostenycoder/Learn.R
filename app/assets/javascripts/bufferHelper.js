@@ -30,8 +30,8 @@ function finishedLoading(bufferList) {
 function playSound(buffer) {
   var source = context.createBufferSource(); // creates a sound source
   source.buffer = buffer;                    // tell the source which sound to play
-  source.connect(context.destination);       // connect the source to the context's destination (the speakers)
-  source.buffer.gain = 1;
+  source.connect(context.destination);      // connect the source to the context's destination (the speakers)
+  source.buffer.gain = .5;
   source.start(0);
 }
 
@@ -40,7 +40,7 @@ function fadeSound(buffer) {
   var source = context.createBufferSource();
   source.buffer = buffer;
   source.connect(context.destination);
-  for(i=99999;i>0;i--){
+  for(i=49999;i>0;i--){
   source.buffer.gain = source.buffer.gain -.00001;
   }
 }
